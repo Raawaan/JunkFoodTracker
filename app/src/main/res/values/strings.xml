@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Junk Food Tracker</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="logo">JFT</string>
+    <string name="email">Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="facebook_app_id">1946878445612144</string>
+    <string name="fb_login_protocol_scheme">fb1946878445612144</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

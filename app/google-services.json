@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "867289076625",
+    "firebase_url": "https://junkfoodtracker.firebaseio.com",
+    "project_id": "junkfoodtracker",
+    "storage_bucket": "junkfoodtracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867289076625:android:4186423506ec38bf",
+        "android_client_info": {
+          "package_name": "com.example.rawan.junkfoodtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867289076625-1sq2j5ss38t6tidmk9ujp2cn81dul6ei.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rawan.junkfoodtracker",
+            "certificate_hash": "d1195c4b429fd82119ba31d08cbb5565db210363"
+          }
+        },
+        {
+          "client_id": "867289076625-pgini81gvb6t84pfduq8ol9qi70ub5m7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPYjr099zW9s6bMoSd4Dou5MyXBuWeUN0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867289076625-pgini81gvb6t84pfduq8ol9qi70ub5m7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
