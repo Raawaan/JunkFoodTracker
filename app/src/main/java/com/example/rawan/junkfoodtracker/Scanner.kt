@@ -31,7 +31,7 @@ import java.util.*
 
 
 /**
- * Created by rawan on 10/09/18.
+ * Created by rawan on 10/09/1b.
  */
 class Scanner:AppCompatActivity(){
     companion object {
