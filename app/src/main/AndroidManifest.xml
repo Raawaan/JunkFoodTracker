@@ -44,7 +44,9 @@
             android:screenOrientation="portrait"
             android:exported="false"/>
         <activity android:name=".Scanner"
-            android:exported="false"/>
+            android:configChanges="orientation|screenSize"
+
+            />
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />

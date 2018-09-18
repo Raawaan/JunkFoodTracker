@@ -29,7 +29,14 @@ import com.google.firebase.auth.UserProfileChangeRequest
 /**
  * Created by rawan on 08/09/18.
  */
-class Home: AppCompatActivity(){
+class Home: AppCompatActivity(),View.OnClickListener{
+    override fun onClick(v: View?) {
+        when(v!!.id){
+
+        }
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     var fbAuth= FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

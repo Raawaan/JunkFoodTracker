@@ -9,10 +9,13 @@ import android.arch.persistence.room.Query
  */
 @Dao
 interface ProductDao {
-     @Query("Select * from Product ORDER BY pid")
+     @Query("Select * from Product ORDER BY barcode")
      fun loadAllProduct(): List<ProductEntity>
 
-    @Query("SELECT * FROM product ORDER BY pid DESC LIMIT 1")
+    @Query("select barcode from Product where barcode=:barcode")
+    fun selectProductWithBarcode(barcode:Long):Long
+
+    @Query("SELECT * FROM product ORDER BY barcode DESC LIMIT 1")
     fun loadLastRow():ProductEntity
 
     @Insert
