@@ -12,7 +12,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
+<ImageView
+    android:layout_width="80dp"
+    android:layout_height="60dp"
+    android:background="@drawable/profile_preview"/>
     <TextView
         android:id="@+id/nav_name"
         android:layout_width="match_parent"

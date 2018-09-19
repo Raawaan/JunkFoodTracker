@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@android:color/holo_red_light"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -28,38 +27,39 @@
     <Button
         android:id="@+id/choose_img"
         android:layout_width="match_parent"
-        android:background="@android:color/holo_red_dark"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:textColor="@android:color/background_light"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
         android:text="Scan Barcode"
+        android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_barcode" />
 
     <ImageView
         android:id="@+id/iv_barcode"
-        android:layout_width="73dp"
-        android:layout_height="51dp"
+        android:layout_width="143dp"
+        android:background="@drawable/preivew"
+        android:layout_height="107dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_img" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/dataLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_marginEnd="8dp"
+        android:visibility="gone"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="260dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -69,16 +69,15 @@
         <TextView
             android:id="@+id/tvBrandTag"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="29dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
             android:text="@string/brand_name"
-            android:textColor="@android:color/background_light"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_barcode" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/tvEnergy"
@@ -88,7 +87,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
             android:text="@string/energy"
-            android:textColor="@android:color/background_light"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,8 +100,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
-            android:textColor="@android:color/background_light"
             android:text="@string/saturated_fat"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +115,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
             android:text="@string/sugars"
-            android:textColor="@android:color/background_light"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +129,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
             android:text="@string/carbohydrates"
-            android:textColor="@android:color/background_light"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,14 +141,14 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:textColor="@android:color/background_light"
             android:layout_marginTop="40dp"
+            android:background="@color/colorPrimary"
             android:text="Confirm"
-            android:background="@android:color/holo_red_dark"
+            android:textColor="@android:color/background_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCarbohydrates" />
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
