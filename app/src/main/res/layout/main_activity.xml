@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_light"
-    android:textColorHint="@color/colorAccent"
+    android:textColorHint="@color/colorPrimaryDark"
     tools:context="com.example.rawan.junkfoodtracker.MainActivity">
 
     <android.support.design.widget.TextInputLayout
@@ -15,8 +14,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
+        android:textColorHint="@color/colorPrimaryDark"
         app:errorEnabled="true"
-        app:errorTextAppearance="@color/colorAccent"
+        app:errorTextAppearance="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -28,21 +28,21 @@
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:textColor="@android:color/background_light"
-            android:textColorHint="@color/colorAccent" />
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textColorLink="@color/colorPrimaryDark" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/etPassLayout"
         android:layout_width="278dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        app:errorTextAppearance="@color/colorAccent"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="240dp"
+        android:textColorHint="@color/colorPrimaryDark"
         app:errorEnabled="true"
+        app:errorTextAppearance="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -51,10 +51,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:textColorHint="@color/colorAccent"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textColor="@android:color/background_light" />
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textColorLink="@color/colorAccent" />
     </android.support.design.widget.TextInputLayout>
 
     <TextView
@@ -66,8 +66,8 @@
         android:layout_marginTop="52dp"
         android:fontFamily="cursive"
         android:text="@string/logo"
+        android:textColor="@color/colorPrimaryDark"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Display2"
-        android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,8 +79,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="36dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@color/colorPrimary"
         android:text="@string/sign_in"
+        android:shadowColor="@color/cardview_light_background"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,14 +92,16 @@
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="wrap_content"
-        android:layout_height="29dp"
+        android:layout_height="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="104dp"
-        android:background="@android:color/holo_red_light"
+        android:background="@android:color/background_light"
+        android:padding="5dp"
+        android:textColor="@color/colorPrimaryDark"
         android:text="No account yet? Create one"
         android:textAllCaps="false"
-        android:textColor="@android:color/background_light"
+        android:textColorHint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
@@ -126,14 +129,4 @@
         android:textColor="@color/cardview_light_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.rawan.roomjft.Room
 
 import android.arch.persistence.room.TypeConverter
+import com.example.rawan.junkfoodtracker.Room.DateWithoutTime
 import java.util.*
 
 
@@ -21,6 +22,9 @@ class DataConverter{
         return if (date==null)
             null
         else
-            date.time
+        {
+            val date = Date()
+        DateWithoutTime.todayDateWithoutTime(date)
+        }
     }
 }

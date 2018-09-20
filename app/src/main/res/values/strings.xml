@@ -28,7 +28,9 @@
     <string name="facebookError">facebook error</string>
     <string name="facebookCancel">facebook cancel</string>
     <string name="pp">public_profile</string>
-    <string name="invalidEmailPass">Invalid email or password</string>
-    <string name="today_s_products">Today\'s Products</string>
+    <string name="invalidEmailPass">incorrect email or password</string>
+        <string name="today_s_products">Today\'s Products</string>
+    <string name="yesterday_s_products">Yesterday\'s Products</string>
     <string name="today_s_total_nutirtion_info">Today\'s Total Nutirtion Info</string>
+    <string name="yesterday_s_total_nutirtion_info">Yesterday\'s Total Nutirtion Info</string>
 </resources>

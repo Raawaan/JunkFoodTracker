@@ -3,9 +3,12 @@ package com.example.rawan.junkfoodtracker
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
@@ -24,7 +27,8 @@ import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import java.util.*
-
+import android.Manifest
+import android.widget.Toast.makeText
 
 /**
  * Created by rawan on 10/09/1b.
@@ -32,6 +36,8 @@ import java.util.*
 class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     val api = API.create()
     val fbAuth= FirebaseAuth.getInstance()
+    var counterPM=1
+    private val CAMERA_REQUEST_CODE=123
     lateinit var photo:Bitmap
     lateinit var JFTDatabase: JFTDatabase
     companion object {
@@ -97,6 +103,16 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                     val sugars=response.body()?.product?.nutriments?.sugars!!.toLong()
                     val carbohydrates=response.body()?.product?.nutriments?.carbohydrates!!.toLong()
                     updateViews(brandName,energy,saturatedFat,sugars,carbohydrates)
+
+                    plusFab.setOnClickListener{counterPM++
+                        counterPlusMinus.text=counterPM.toString()}
+                    minusFab.setOnClickListener{if (counterPM!=0){
+                        counterPM--
+                        counterPlusMinus.text=counterPM.toString()
+                    }
+                    else
+                        Toast.makeText(this@ScannerActivity, "Can't be minimized", Toast.LENGTH_SHORT).show()
+                    }
                     confirm.setOnClickListener {
                         addData(barcode,brandName,energy,saturatedFat,sugars,carbohydrates)
                         Toast.makeText(this@ScannerActivity,getString(R.string.enjoy), Toast.LENGTH_SHORT).show()
@@ -134,18 +150,19 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     }
     private fun createNewUserProduct(isIdExisted: Int, isBarcodeExisted: Long) {
         val date = Date()
-        val userProductEntry = UserProductEntity(isIdExisted, isBarcodeExisted, 1, date)
+        val userProductEntry = UserProductEntity(isIdExisted, isBarcodeExisted, counterPM, date)
         JFTDatabase.upDao().insertup(userProductEntry)
     }
     private fun updateCounter(isIdExisted: Int, isBarcodeExisted: Long) {
         var counterTobeUpdated = JFTDatabase.upDao().loadToUpdateCounter(isIdExisted, isBarcodeExisted)
-        counterTobeUpdated++
+        counterTobeUpdated= counterPM+counterTobeUpdated++
         JFTDatabase.upDao().Update(counterTobeUpdated, isIdExisted, isBarcodeExisted)
     }
 
     @SuppressLint("SetTextI18n")
     fun updateViews(name:String, energy :Long, saturatedFat:Long, sugars:Long, carbohydrates:Long){
         dataLayout.visibility=View.VISIBLE
+        counterPlusMinus.text=counterPM.toString()
         tvBrandTag.text=getString(R.string.brand_name)+ name
         tvEnergy.text=getString(R.string.energy)+energy.toString()+getString(R.string.energy_unit)
         tvSaturatedFat.text=getString(R.string.saturated_fat)+saturatedFat.toString() +getString(R.string.unit)
@@ -168,9 +185,31 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     }
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.choose_img-> chooseImage()
-            R.id.confirm->{
+            R.id.choose_img-> setupPermissions()
+        }
+    }
+    private fun setupPermissions() {
+        val permisison = ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA)
+        if(permisison!= PackageManager.PERMISSION_GRANTED){
+            makeRequest()
+        }
+        else chooseImage()
 
+    }
+    private  fun  makeRequest(){
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA),CAMERA_REQUEST_CODE)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+
+                } else {
+                    chooseImage()
+                }
             }
         }
     }

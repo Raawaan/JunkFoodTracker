@@ -26,7 +26,7 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
         setSupportActionBar(toolbar)
-        supportFragmentManager.beginTransaction().add(R.id.fragmentPlaceholder, HomeFrag.newInstance(), "a").commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragmentPlaceholder, AbstractFrag.newInstance(), "a").commit()
         actionBarScanner.setOnClickListener(this)
         handleNavDrawer()
         navDrawerHeader()
@@ -58,7 +58,7 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener{
                     finish()
                 }
                 R.id.nav_home -> {
-                    replaceFragments(HomeFrag.newInstance())
+                    replaceFragments(AbstractFrag.newInstance())
                 }
                 nav_profile -> {
                     replaceFragments(ProfileFrag.newInstance())

@@ -25,11 +25,11 @@ interface UserProductDao{
     @Query("SELECT * FROM product , user ,UserProduct where user.id=UserProduct.userId AND product.barcode=UserProduct.productBarcode")
     fun loadAllData(): List<AllData>
 
-    @Query("SELECT brandName FROM UserProduct,product where UserProduct.userId=:uId AND userProduct.productBarcode=product.barcode")
-    fun selectProductsOfCurrentUSer(uId:Int): List<String>
+    @Query("SELECT brandName FROM UserProduct,product where UserProduct.userId=:uId AND userProduct.productBarcode=product.barcode AND  UserProduct.date=:date")
+    fun selectProductsOfCurrentUSer(uId:Int,date:Long): List<String>
 
-    @Query("SELECT sum(energy*counter) as energy,sum(saturatedFat*counter) as saturatedFat,sum(sugars*counter) as sugars,sum(carbohydrates*counter) as carbohydrates FROM UserProduct,product where userId=:uId AND userProduct.productBarcode=product.barcode")
-    fun selectSummationOfNutInfo(uId:Int):NutritionInfo
+    @Query("SELECT sum(energy*counter) as energy,sum(saturatedFat*counter) as saturatedFat,sum(sugars*counter) as sugars,sum(carbohydrates*counter) as carbohydrates FROM UserProduct,product where userId=:uId AND userProduct.productBarcode=product.barcode AND UserProduct.date=:date")
+    fun selectSummationOfNutInfo(uId:Int,date:Long):NutritionInfo
     @Insert
     fun insertup(upEntry: UserProductEntity)
 
