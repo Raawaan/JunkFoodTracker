@@ -2,6 +2,7 @@ package com.example.rawan.roomjft.Room
 
 import android.arch.persistence.room.TypeConverter
 import com.example.rawan.junkfoodtracker.Room.DateWithoutTime
+import kotlinx.android.synthetic.main.calender_frag.*
 import java.util.*
 
 
@@ -13,7 +14,7 @@ class DataConverter{
     @TypeConverter
     fun toData(timestamp:Long?):Date? {
         return if (timestamp==null)
-              null
+            null
         else
             Date(timestamp)
     }
@@ -24,7 +25,7 @@ class DataConverter{
         else
         {
             val date = Date()
-        DateWithoutTime.todayDateWithoutTime(date)
+            DateWithoutTime.todayDateWithoutTime(date)
         }
     }
 }

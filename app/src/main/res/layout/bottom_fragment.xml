@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:padding="@dimen/activity_vertical_margin"
+    android:background="#fbfbfd"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="?actionBarSize"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+
+    <ImageView
+        android:id="@+id/bottomSheetHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/arrow" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvFrom"
+        android:layout_alignParentStart="true"
+        android:text="From"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/fromBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/bottomSheetHeading"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="11dp"
+        android:layout_toEndOf="@+id/textView3"
+        android:background="@drawable/date" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_marginEnd="24dp"
+        android:layout_toStartOf="@+id/toBtn"
+        android:text="To"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/toBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/date" />
+
+    <TextView
+        android:id="@+id/tvFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/fromBtn"
+        android:layout_marginTop="23dp"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvFrom"
+        android:layout_alignBottom="@+id/tvFrom"
+        android:layout_alignParentEnd="true"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/confrimDateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTo"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:padding="4dp"
+        android:visibility="gone"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/cardview_light_background" />
+
+    <RelativeLayout
+        android:id="@+id/nutInfoRange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvFrom"
+        android:layout_marginTop="104dp">
+
+        <TextView
+            android:id="@+id/sheetFragTvEnergy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="21dp"
+            android:text="@string/energy"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/sheetFragTvSaturatedFat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/sheetFragTvEnergy"
+            android:text="@string/saturated_fat"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/sheetFragTvSugars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/sheetFragTvSaturatedFat"
+            android:text="@string/sugars"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/sheetFragTvCarbohydrates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/sheetFragTvSugars"
+            android:text="@string/carbohydrates"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    </RelativeLayout>
+</RelativeLayout>

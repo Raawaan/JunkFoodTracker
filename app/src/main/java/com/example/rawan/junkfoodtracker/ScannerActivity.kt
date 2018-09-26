@@ -18,17 +18,21 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import kotlinx.android.synthetic.main.scanner.*
 import com.example.android.todolist.AppExecutors
 import com.example.rawan.junkfoodtracker.Retrofit.API
-import com.example.rawan.roomjft.Room.JFTDatabase
-import com.example.rawan.roomjft.Room.ProductEntity
-import com.example.rawan.roomjft.Room.UserEntity
-import com.example.rawan.roomjft.Room.UserProductEntity
 import com.facebook.stetho.Stetho
 import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import java.util.*
 import android.Manifest
+import android.content.Context
 import android.widget.Toast.makeText
+import com.example.rawan.junkfoodtracker.Room.DateWithoutTime
+import com.example.rawan.roomjft.Room.*
+import android.net.NetworkInfo
+import android.content.Context.CONNECTIVITY_SERVICE
+import android.net.ConnectivityManager
+
+
 
 /**
  * Created by rawan on 10/09/1b.
@@ -37,6 +41,8 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     val api = API.create()
     val fbAuth= FirebaseAuth.getInstance()
     var counterPM=1
+    val date = Date()
+
     private val CAMERA_REQUEST_CODE=123
     lateinit var photo:Bitmap
     lateinit var JFTDatabase: JFTDatabase
@@ -79,7 +85,11 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                         // See API reference for complete list of supported types
                         when (valueType) {
                             FirebaseVisionBarcode.TYPE_PRODUCT->{
-                                connection(barcode.displayValue!!.toLong())
+                                if (isOnline(this@ScannerActivity))
+                                    connection(barcode.displayValue!!.toLong())
+                                else
+                                    Toast.makeText(this@ScannerActivity, getString(R.string.connection), Toast.LENGTH_SHORT).show()
+
                             }
                         }
                     }
@@ -104,7 +114,8 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                     val carbohydrates=response.body()?.product?.nutriments?.carbohydrates!!.toLong()
                     updateViews(brandName,energy,saturatedFat,sugars,carbohydrates)
 
-                    plusFab.setOnClickListener{counterPM++
+                    plusFab.setOnClickListener{
+                        counterPM++
                         counterPlusMinus.text=counterPM.toString()}
                     minusFab.setOnClickListener{if (counterPM!=0){
                         counterPM--
@@ -114,7 +125,7 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                         Toast.makeText(this@ScannerActivity, "Can't be minimized", Toast.LENGTH_SHORT).show()
                     }
                     confirm.setOnClickListener {
-                        addData(barcode,brandName,energy,saturatedFat,sugars,carbohydrates)
+                        addData(barcode,brandName,energy,saturatedFat,sugars,carbohydrates,date)
                         Toast.makeText(this@ScannerActivity,getString(R.string.enjoy), Toast.LENGTH_SHORT).show()
                         finish()
                     }
@@ -127,7 +138,7 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
 
 
     }
-    fun addData(productBarcode:Long,name:String,energy :Long,saturatedFat:Long,sugars:Long,carbohydrates:Long){
+    fun addData(productBarcode:Long,name:String,energy :Long,saturatedFat:Long,sugars:Long,carbohydrates:Long,date :Date){
         AppExecutors.instance?.diskIO()?.execute {
             JFTDatabase= com.example.rawan.roomjft.Room.JFTDatabase.getInstance(applicationContext)
 
@@ -139,7 +150,7 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
             if(isIdExisted==0) {
                 isIdExisted = createNewUserAndGetId()
             }
-            val sameUserProduct = JFTDatabase.upDao().sameUserSameProduct(isIdExisted,isBarcodeExisted)
+            val sameUserProduct = JFTDatabase.upDao().sameUserSameProduct(isIdExisted,isBarcodeExisted,date)
             if (sameUserProduct!=0){
                 updateCounter(isIdExisted, isBarcodeExisted)
             }
@@ -149,13 +160,12 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
         }
     }
     private fun createNewUserProduct(isIdExisted: Int, isBarcodeExisted: Long) {
-        val date = Date()
         val userProductEntry = UserProductEntity(isIdExisted, isBarcodeExisted, counterPM, date)
         JFTDatabase.upDao().insertup(userProductEntry)
     }
     private fun updateCounter(isIdExisted: Int, isBarcodeExisted: Long) {
         var counterTobeUpdated = JFTDatabase.upDao().loadToUpdateCounter(isIdExisted, isBarcodeExisted)
-        counterTobeUpdated= counterPM+counterTobeUpdated++
+        counterTobeUpdated += counterPM
         JFTDatabase.upDao().Update(counterTobeUpdated, isIdExisted, isBarcodeExisted)
     }
 
@@ -194,12 +204,10 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
             makeRequest()
         }
         else chooseImage()
-
     }
     private  fun  makeRequest(){
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA),CAMERA_REQUEST_CODE)
     }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode) {
@@ -212,5 +220,11 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                 }
             }
         }
+    }
+    fun isOnline(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+        return isConnected
     }
 }
