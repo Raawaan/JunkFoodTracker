@@ -4,6 +4,8 @@ import android.content.Intent
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -25,6 +27,7 @@ import java.util.*
 import com.google.firebase.auth.FacebookAuthProvider
 import com.facebook.AccessToken
 import com.google.firebase.auth.UserProfileChangeRequest
+import java.util.regex.Pattern
 
 
 /**
@@ -43,6 +46,38 @@ class SignUp: AppCompatActivity(), View.OnClickListener {
         //facebook handler
         loginButton.setOnClickListener (this)
         gmailBtn.setOnClickListener(this)
+
+
+        setEmail.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if(!validateEmail()){
+                    setEmailLayout.error=getString(R.string.invalidEmail)
+                }
+                else
+                        setEmailLayout.isErrorEnabled=false
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+        setPassword.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if(!validatePassword()){
+                    setPassLayout.error=getString(R.string.invalidPassword)
+                }
+                else
+                    setPassLayout.isErrorEnabled=false
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+
+
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -116,7 +151,7 @@ class SignUp: AppCompatActivity(), View.OnClickListener {
         startActivity(i)
         this@SignUp.finish()
     }
-    fun validateTitle():Boolean{
+    fun validateEmail():Boolean{
         var email=setEmailLayout.editText?.text.toString().trim()
         val ePattern = Patterns.EMAIL_ADDRESS
         val p = java.util.regex.Pattern.compile(ePattern.toString())
@@ -130,7 +165,11 @@ class SignUp: AppCompatActivity(), View.OnClickListener {
     }
     fun validatePassword():Boolean{
         var pass=setPassLayout.editText?.text.toString().trim()
-            if(pass.length<7||pass.isEmpty()){
+        //start with string ,at least one digits&cap letter size>8
+        val regex = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")
+        val p = java.util.regex.Pattern.compile(regex.toString())
+        val m = p.matcher(pass)
+        if(!m.matches()){
                 setPassLayout.error=getString(R.string.invalidPassword)
             return false
             }
@@ -138,10 +177,9 @@ class SignUp: AppCompatActivity(), View.OnClickListener {
         return true
     }
     private fun confirm():Boolean{
-        if (validateTitle()){
-            if(validatePassword())
+            if(validatePassword()&&validateEmail())
                 return true
-        }
+
         return false
     }
     override fun onClick(view: View?) {
@@ -160,9 +198,12 @@ class SignUp: AppCompatActivity(), View.OnClickListener {
                         val profile= UserProfileChangeRequest.Builder().setDisplayName(email.removeRange(email.indexOf("@"),email.length)).build()
                         user?.updateProfile(profile)
                         if (it.isSuccessful){
+//                            openActivity()
                             Toast.makeText(this, getString(R.string.welcome), Toast.LENGTH_SHORT).show()
-                            openActivity()
-                        }
+                            val i= Intent(this@SignUp,OnBoarding::class.java)
+                            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(i)
+                      }
                         else
                             Toast.makeText(this, "${it.exception}", Toast.LENGTH_SHORT).show()
                     }

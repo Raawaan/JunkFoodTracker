@@ -41,12 +41,12 @@
 
     <ImageView
         android:id="@+id/iv_barcode"
-        android:layout_width="143dp"
-        android:background="@drawable/preivew"
-        android:layout_height="107dp"
+        android:layout_width="130dp"
+        android:layout_height="79dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="68dp"
+        android:background="@drawable/preivew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,13 +58,46 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="264dp"
-        android:orientation="vertical"
         android:visibility="gone"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/choose_img">
+
+        <TextView
+            android:id="@+id/pickerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Pick Date"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            app:layout_constraintEnd_toStartOf="@+id/ivDate"
+            app:layout_constraintStart_toEndOf="@+id/pickerTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@id/ivDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="96dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvBrandTag"
@@ -72,12 +105,13 @@
             android:layout_height="29dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="8dp"
             android:text="@string/brand_name"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateTitle" />
 
         <TextView
             android:id="@+id/tvEnergy"
@@ -186,8 +220,8 @@
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:textStyle="bold"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/confirm"
             app:layout_constraintEnd_toStartOf="@+id/plusFab"
             app:layout_constraintStart_toEndOf="@+id/minusFab" />

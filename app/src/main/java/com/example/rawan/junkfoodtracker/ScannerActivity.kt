@@ -24,6 +24,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import java.util.*
 import android.Manifest
+import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.Toast.makeText
 import com.example.rawan.junkfoodtracker.Room.DateWithoutTime
@@ -31,7 +32,11 @@ import com.example.rawan.roomjft.Room.*
 import android.net.NetworkInfo
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
-
+import android.provider.ContactsContract
+import android.util.Log
+import kotlinx.android.synthetic.main.bottom_fragment.*
+import kotlinx.android.synthetic.main.calender_frag.*
+import java.text.SimpleDateFormat
 
 
 /**
@@ -41,7 +46,9 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     val api = API.create()
     val fbAuth= FirebaseAuth.getInstance()
     var counterPM=1
+    val calender=Calendar.getInstance()
     val date = Date()
+    var selectedDate= Date()
 
     private val CAMERA_REQUEST_CODE=123
     lateinit var photo:Bitmap
@@ -57,6 +64,21 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
         Stetho.initializeWithDefaults(this)
         supportActionBar?.title = "Scanner"
         choose_img.setOnClickListener(this)
+        var year = calender.get(Calendar.YEAR)
+        var month = calender.get(Calendar.MONTH)
+        var day = calender.get(Calendar.DAY_OF_MONTH)
+        ivDate.setOnClickListener {
+            var datePicker = DatePickerDialog(this@ScannerActivity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
+                dateTitle.text = " " + mDayOfMonth + "/" + mMonth + "/" + mYear
+                calender.set(Calendar.YEAR,mYear )
+                calender.set(Calendar.MONTH, mMonth)
+                calender.set(Calendar.DAY_OF_MONTH, mDayOfMonth)
+                 selectedDate= DataConverter().toData(DateWithoutTime.todayDateWithoutTime(calender.time))!!
+            }, year, month, day)
+            datePicker.datePicker.maxDate=date.time
+            datePicker.show()
+        }
+
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -125,9 +147,8 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                         Toast.makeText(this@ScannerActivity, "Can't be minimized", Toast.LENGTH_SHORT).show()
                     }
                     confirm.setOnClickListener {
-                        addData(barcode,brandName,energy,saturatedFat,sugars,carbohydrates,date)
+                        addData(barcode,brandName,energy,saturatedFat,sugars,carbohydrates,selectedDate)
                         Toast.makeText(this@ScannerActivity,getString(R.string.enjoy), Toast.LENGTH_SHORT).show()
-                        finish()
                     }
                 }
             }
@@ -150,17 +171,18 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
             if(isIdExisted==0) {
                 isIdExisted = createNewUserAndGetId()
             }
-            val sameUserProduct = JFTDatabase.upDao().sameUserSameProduct(isIdExisted,isBarcodeExisted,date)
+            val sameUserProduct = JFTDatabase.upDao().sameUserSameProduct(isIdExisted,isBarcodeExisted,DateWithoutTime.todayDateWithoutTime(selectedDate))
             if (sameUserProduct!=0){
                 updateCounter(isIdExisted, isBarcodeExisted)
             }
             else {
                 createNewUserProduct(isIdExisted, isBarcodeExisted)
             }
+            finish()
         }
     }
     private fun createNewUserProduct(isIdExisted: Int, isBarcodeExisted: Long) {
-        val userProductEntry = UserProductEntity(isIdExisted, isBarcodeExisted, counterPM, date)
+        val userProductEntry = UserProductEntity(isIdExisted, isBarcodeExisted, counterPM, DateWithoutTime.todayDateWithoutTime(selectedDate))
         JFTDatabase.upDao().insertup(userProductEntry)
     }
     private fun updateCounter(isIdExisted: Int, isBarcodeExisted: Long) {
@@ -172,12 +194,15 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     @SuppressLint("SetTextI18n")
     fun updateViews(name:String, energy :Long, saturatedFat:Long, sugars:Long, carbohydrates:Long){
         dataLayout.visibility=View.VISIBLE
+        val dateFormat = SimpleDateFormat("dd/M/yyyy")
+        dateTitle.text=dateFormat.format(calender.time)
         counterPlusMinus.text=counterPM.toString()
         tvBrandTag.text=getString(R.string.brand_name)+ name
         tvEnergy.text=getString(R.string.energy)+energy.toString()+getString(R.string.energy_unit)
         tvSaturatedFat.text=getString(R.string.saturated_fat)+saturatedFat.toString() +getString(R.string.unit)
         tvSugars.text=getString(R.string.sugars)+sugars.toString()+getString(R.string.unit)
         tvCarbohydrates.text=getString(R.string.carbohydrates)+carbohydrates.toString() +getString(R.string.unit)
+
     }
     private fun createNewProductAndGetBarcode(productBarcode:Long,name:String, energy :Long, saturatedFat:Long, sugars:Long, carbohydrates:Long):Long{
         val ProductEntry = ProductEntity(productBarcode,name,energy,saturatedFat,sugars,carbohydrates)

@@ -18,14 +18,14 @@ class DataConverter{
         else
             Date(timestamp)
     }
-    @TypeConverter
-    fun toTimestamp(date: Date):Long?{
-        return if (date==null)
-            null
-        else
-        {
-            val date = Date()
-            DateWithoutTime.todayDateWithoutTime(date)
-        }
-    }
+//    @TypeConverter
+//    fun toTimestamp(date: Date):Long?{
+//        return if (date==null)
+//            null
+//        else
+//        {
+//            val date = Date()
+//            DateWithoutTime.todayDateWithoutTime(date)
+//        }
+//    }
 }

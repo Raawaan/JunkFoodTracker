@@ -42,6 +42,8 @@
         <activity android:name=".HomeActivity"
             android:screenOrientation="portrait"
             android:exported="false"/>
+               <activity android:name=".OnBoarding"
+            android:exported="false"/>
         <activity android:name=".ScannerActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize"

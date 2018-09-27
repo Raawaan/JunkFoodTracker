@@ -12,7 +12,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
 import android.widget.Toast
+import com.example.android.todolist.AppExecutors
 import com.example.rawan.junkfoodtracker.R.drawable.date
 import com.example.rawan.junkfoodtracker.Room.BrandNameAndCounter
 import com.example.rawan.junkfoodtracker.Room.DateWithoutTime
@@ -24,8 +26,11 @@ import kotlinx.android.synthetic.main.bottom_fragment.*
 import kotlinx.android.synthetic.main.bottom_fragment.view.*
 import kotlinx.android.synthetic.main.calender_frag.*
 import kotlinx.android.synthetic.main.home_frag.*
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.log
+
+
 
 
 /**
@@ -36,36 +41,47 @@ class CalenderFrag : android.support.v4.app.Fragment(){
     private val fbAuth = FirebaseAuth.getInstance()
     private var calender: Calendar = Calendar.getInstance()
     private val date = Date()
-    lateinit var productAdapter: ProductAdapter
-    lateinit var listProducts: List<BrandNameAndCounter>
-    lateinit var JFTDatabase: JFTDatabase
-    lateinit var toDate:Date
-    lateinit var fromDate:Date
+    private lateinit var productAdapter: ProductAdapter
+    private lateinit var listProducts: List<BrandNameAndCounter>
+    private lateinit var JFTDatabase: JFTDatabase
+    private lateinit var toDate:Date
+    private lateinit var fromDate:Date
 
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onStart() {
         super.onStart()
         //in OnStart to update views onRestart
-        JFTDatabase = com.example.rawan.roomjft.Room.JFTDatabase.getInstance(activity!!.applicationContext)
-        val userID = JFTDatabase.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
-        val yesterday = DateWithoutTime.todayDateWithoutTime(calender.time)
-        calendarView.date = yesterday
-        listProducts = JFTDatabase.upDao().selectProductsOfCurrentUSer(userID, yesterday)
-        calMyRVItem.layoutManager = LinearLayoutManager(activity)
-        productAdapter = ProductAdapter(listProducts)
-        calMyRVItem.adapter = productAdapter
+
+        val dateFormat = SimpleDateFormat("dd/M/yyyy")
+        calProductListTitle.text=getString(R.string.productTitle) +dateFormat.format(calender.time)
+        calTotalNutiTitle.text=getString(R.string.nutTitle) + dateFormat.format(calender.time)
+            JFTDatabase = com.example.rawan.roomjft.Room.JFTDatabase.getInstance(activity!!.applicationContext)
+            val userID = JFTDatabase.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
+            val yesterday = DateWithoutTime.todayDateWithoutTime(calender.time)
+            calendarView.minDate = JFTDatabase.upDao().minDate(userID)
+            calendarView.invalidate()
+            calendarView.maxDate=date.time
+
         val nutrition = JFTDatabase.upDao().selectSummationOfNutInfo(userID, yesterday)
-        updateViews(nutrition.energy, nutrition.saturatedFat, nutrition.sugars, nutrition.carbohydrates)
+            updateViews(nutrition.energy, nutrition.saturatedFat, nutrition.sugars, nutrition.carbohydrates)
+            calendarView.date = yesterday
+            listProducts = JFTDatabase.upDao().selectProductsOfCurrentUSer(userID, yesterday)
+            calMyRVItem.layoutManager = LinearLayoutManager(activity)
+            productAdapter = ProductAdapter(listProducts)
+            calMyRVItem.adapter = productAdapter
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.calender_frag, container, false)
     }
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         handleBottomSheetBehavior()
         JFTDatabase = com.example.rawan.roomjft.Room.JFTDatabase.getInstance(activity!!.applicationContext)
-        val userID = JFTDatabase.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
+        var userID = JFTDatabase.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
         //update calender default data to yesterday
         calender.add(Calendar.DATE, -1)
         val yesterday = DateWithoutTime.todayDateWithoutTime(calender.time)
@@ -74,8 +90,9 @@ class CalenderFrag : android.support.v4.app.Fragment(){
 
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             month.plus(1)
-            calender?.set(year, month, dayOfMonth)
-            val selectedDateWithoutTime = DateWithoutTime.todayDateWithoutTime(calender.time)
+            calender.set(year, month, dayOfMonth)
+            userID = JFTDatabase.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
+            val selectedDateWithoutTime= DateWithoutTime.todayDateWithoutTime(calender.time)
             val nutrition = JFTDatabase.upDao().selectSummationOfNutInfo(userID, selectedDateWithoutTime)
             calProductListTitle.text = getString(R.string.productTitle) + dayOfMonth + "/" + month.plus(1) + "/" + year
             calTotalNutiTitle.text = getString(R.string.nutTitle) + dayOfMonth + "/" + month.plus(1) + "/" + year
@@ -87,19 +104,22 @@ class CalenderFrag : android.support.v4.app.Fragment(){
         }
         bottomSheetLogic(userID)
     }
+    @SuppressLint("SetTextI18n")
     private fun bottomSheetLogic(userID: Int) {
         val calender = Calendar.getInstance()
         var year = calender.get(Calendar.YEAR)
         var month = calender.get(Calendar.MONTH)
         var day = calender.get(Calendar.DAY_OF_MONTH)
         fromBtn.setOnClickListener {
-            val fromPicker = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
+            var fromPicker = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
                 tvFrom.text = " " + mDayOfMonth + "/" + mMonth + "/" + mYear
                 calender.set(Calendar.YEAR, mYear)
                 calender.set(Calendar.MONTH, mMonth)
                 calender.set(Calendar.DAY_OF_MONTH, mDayOfMonth)
                 fromDate = calender.time
             }, year, month, day)
+            fromPicker.datePicker.minDate=JFTDatabase.upDao().minDate(userID)
+            fromPicker.datePicker.maxDate=date.time
             fromPicker.show()
         }
         toBtn.setOnClickListener {
@@ -111,6 +131,8 @@ class CalenderFrag : android.support.v4.app.Fragment(){
                 toDate = calender.time
 
             }, year, month, day)
+            toPicker.datePicker.minDate=JFTDatabase.upDao().minDate(userID)
+            toPicker.datePicker.maxDate=date.time
             toPicker.show()
             confrimDateBtn.visibility = View.VISIBLE
         }
@@ -153,4 +175,5 @@ class CalenderFrag : android.support.v4.app.Fragment(){
         calFragTvSugars.text = getString(R.string.sugars) + sugars.toString() + getString(R.string.unit)
         calFragTvCarbohydrates.text = getString(R.string.carbohydrates) + carbohydrates.toString() + getString(R.string.unit)
     }
+
 }

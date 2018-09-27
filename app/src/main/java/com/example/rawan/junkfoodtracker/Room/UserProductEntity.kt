@@ -20,4 +20,4 @@ data class UserProductEntity(
         var userId:Int ,
         var productBarcode:Long,
         var counter:Int,
-        var date: Date)
+        var date: Long)

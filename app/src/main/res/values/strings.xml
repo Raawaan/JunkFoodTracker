@@ -23,7 +23,7 @@
     <string name="saturated_fat">Saturated Fat:\u0020</string>
     <string name="sugars">Sugars:\u0020</string>
     <string name="carbohydrates">Carbohydrates:\u0020</string>
-    <string name="invalidPassword">Short Password</string>
+    <string name="invalidPassword">Invalid Password</string>
     <string name="invalidEmail">Invalid Email</string>
     <string name="facebookError">facebook error</string>
     <string name="facebookCancel">facebook cancel</string>
@@ -34,6 +34,6 @@
     <string name="today_s_total_nutirtion_info">Today\'s Total Nutirtion Info \u0020</string>
     <string name="yesterday_s_total_nutirtion_info">Yesterday\'s Total Nutirtion Info \u0020</string>
     <string name="connection">Please Check Your Internet Connection And Try Again</string>
-    <string name="nutTitle">Total Nutirtion Info of</string>
-    <string name="productTitle">Products of</string>
+    <string name="nutTitle">Total Nutirtion Info of\u0020</string>
+    <string name="productTitle">Products of\u0020</string>
 </resources>
