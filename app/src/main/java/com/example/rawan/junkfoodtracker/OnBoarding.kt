@@ -23,13 +23,18 @@ import com.hololo.tutorial.library.TutorialActivity
                 .setBackgroundColor(Color.parseColor("#b53f3f")) // int background color
                 .setDrawable(R.drawable.food2) // int top drawable
                 .build())
-        val step2 = Step.Builder()
+        val step1 = Step.Builder()
 
-        addFragment( step2
+        addFragment( step1
                 .setTitle("So lets start by adding our first food by clicking here")
                 .setBackgroundColor(Color.parseColor("#b53f3f")) // int background color
                 .setDrawable(R.drawable.food2)
-//                 .setView(R.id.actionBarScanner)// int top drawable
+//                 .setView(R.layout.main_activity)// int top drawable
+                .build())
+
+    val step2 = Step.Builder()
+        addFragment( step2
+                 .setView(R.layout.view_slider)// int top drawable
                 .build())
     }
 
