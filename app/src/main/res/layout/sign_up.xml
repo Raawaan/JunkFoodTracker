@@ -16,7 +16,6 @@
         app:errorEnabled="true"
         android:layout_marginTop="44dp"
         android:hint="Email"
-        app:errorTextAppearance="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -35,7 +34,6 @@
         android:layout_width="278dp"
         app:errorEnabled="true"
         android:layout_height="wrap_content"
-        app:errorTextAppearance="@color/colorPrimaryDark"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="240dp"
@@ -71,17 +69,18 @@
 
     <Button
         android:id="@+id/registationBtn"
-        android:layout_width="278dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
         android:background="@color/colorPrimary"
         android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/setPassLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/setPassLayout"
         app:layout_constraintTop_toBottomOf="@+id/setPassLayout" />
 
     <com.google.android.gms.common.SignInButton

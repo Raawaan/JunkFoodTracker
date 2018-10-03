@@ -52,14 +52,21 @@ class CalenderFrag : android.support.v4.app.Fragment(){
         super.onStart()
         //in OnStart to update views onRestart
 
-        val dateFormat = SimpleDateFormat("dd/M/yyyy")
-        calProductListTitle.text=getString(R.string.productTitle) +dateFormat.format(calender.time)
-        calTotalNutiTitle.text=getString(R.string.nutTitle) + dateFormat.format(calender.time)
+
             JFTDatabase = com.example.rawan.roomjft.Room.JFTDatabase.getInstance(activity!!.applicationContext)
             val userID = JFTDatabase.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
-            val yesterday = DateWithoutTime.todayDateWithoutTime(calender.time)
-            calendarView.minDate = JFTDatabase.upDao().minDate(userID)
-            calendarView.invalidate()
+        val mydate = Date(System.currentTimeMillis() - 1000 * 60 * 60 * 24)
+        val yesterday = DateWithoutTime.todayDateWithoutTime(mydate)
+        val dateFormat = SimpleDateFormat("dd/M/yyyy")
+        calProductListTitle.text=getString(R.string.productTitle) +dateFormat.format(yesterday)
+        calTotalNutiTitle.text=getString(R.string.nutTitle) + dateFormat.format(yesterday)
+            val isDateExist= JFTDatabase.upDao().minDate(userID)
+        if(isDateExist!=0.toLong()&&isDateExist<DateWithoutTime.todayDateWithoutTime(date)){
+            calendarView.minDate = isDateExist
+        }
+        else
+            calendarView.minDate=yesterday
+
             calendarView.maxDate=date.time
 
         val nutrition = JFTDatabase.upDao().selectSummationOfNutInfo(userID, yesterday)
@@ -83,8 +90,8 @@ class CalenderFrag : android.support.v4.app.Fragment(){
         JFTDatabase = com.example.rawan.roomjft.Room.JFTDatabase.getInstance(activity!!.applicationContext)
         var userID = JFTDatabase.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
         //update calender default data to yesterday
-        calender.add(Calendar.DATE, -1)
-        val yesterday = DateWithoutTime.todayDateWithoutTime(calender.time)
+        val mydate = Date(System.currentTimeMillis() - 1000 * 60 * 60 * 24)
+        val yesterday = DateWithoutTime.todayDateWithoutTime(mydate)
         val nutrition = JFTDatabase.upDao().selectSummationOfNutInfo(userID, yesterday)
         updateViews(nutrition.energy, nutrition.saturatedFat, nutrition.sugars, nutrition.carbohydrates)
 
@@ -112,7 +119,8 @@ class CalenderFrag : android.support.v4.app.Fragment(){
         var day = calender.get(Calendar.DAY_OF_MONTH)
         fromBtn.setOnClickListener {
             var fromPicker = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
-                tvFrom.text = " " + mDayOfMonth + "/" + mMonth + "/" + mYear
+
+                tvFrom.text = " " + mDayOfMonth + "/" + mMonth.plus(1) + "/" + mYear
                 calender.set(Calendar.YEAR, mYear)
                 calender.set(Calendar.MONTH, mMonth)
                 calender.set(Calendar.DAY_OF_MONTH, mDayOfMonth)
@@ -124,7 +132,8 @@ class CalenderFrag : android.support.v4.app.Fragment(){
         }
         toBtn.setOnClickListener {
             val toPicker = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
-                tvTo.text = " " + mDayOfMonth + "/" + mMonth + "/" + mYear
+
+                tvTo.text = " " + mDayOfMonth + "/" + mMonth.plus(1) + "/" + mYear
                 calender.set(Calendar.YEAR, mYear)
                 calender.set(Calendar.MONTH, mMonth)
                 calender.set(Calendar.DAY_OF_MONTH, mDayOfMonth)

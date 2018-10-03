@@ -21,9 +21,11 @@ class AbstractFrag:android.support.v4.app.Fragment(){
             return AbstractFrag()
         }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         //this inflates out tab layout file.
+
         val x = inflater.inflate(R.layout.tab_fragment_layout, null)
         // set up stuff.
         val tabLayout : TabLayout = x.findViewById(R.id.tabs)
@@ -50,6 +52,7 @@ class AbstractFrag:android.support.v4.app.Fragment(){
         //return the fragment with respect to page position.
         override fun getItem( position:Int): Fragment
         {
+
             return when (position){
                 0 ->  HomeFrag()
                 else ->CalenderFrag()

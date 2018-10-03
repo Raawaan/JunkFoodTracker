@@ -1,7 +1,9 @@
 package com.example.rawan.junkfoodtracker
 
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
+import android.preference.Preference
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -15,13 +17,15 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.home.*
 import android.widget.TextView
+import android.widget.Toast
+import java.security.AccessController.getContext
 
 
 /**
  * Created by rawan on 08/09/18.
  */
-class HomeActivity: AppCompatActivity(),View.OnClickListener{
-    var fbAuth= FirebaseAuth.getInstance()
+class HomeActivity : AppCompatActivity(), View.OnClickListener {
+    var fbAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
@@ -31,6 +35,20 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener{
         handleNavDrawer()
         navDrawerHeader()
     }
+
+    override fun onResume() {
+        super.onResume()
+        val fm = supportFragmentManager.findFragmentByTag("a")
+        if (fm != null && fm.isVisible) {
+//        Toast.makeText(this,"hmada Opa",Toast.LENGTH_LONG).show()
+            val fragTransaction = supportFragmentManager.beginTransaction()
+            fragTransaction.detach(fm)
+            fragTransaction.attach(fm)
+            fragTransaction.commit()
+        }
+
+    }
+
     private fun navDrawerHeader() {
         if (fbAuth.getCurrentUser() != null) {
             val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
@@ -41,6 +59,7 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener{
             navEmail.text = fbAuth.currentUser?.email
         }
     }
+
     private fun handleNavDrawer() {
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar,
@@ -66,9 +85,9 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener{
                 R.id.nav_about -> {
                     replaceFragments(AboutFrag.newInstance())
                 }
-               R.id.nav_setting -> {
-                 replaceFragments(SettingFrag.newInstance())
-               }
+                R.id.nav_setting -> {
+                    replaceFragments(SettingFrag.newInstance())
+                }
 
             }
             // Close the drawer
@@ -76,6 +95,7 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener{
             true
         }
     }
+
     override fun onBackPressed() {
         val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -84,15 +104,16 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener{
             super.onBackPressed()
         }
     }
-    private fun replaceFragments(fragment: Fragment){
-        val fragmentTransaction= supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.
-        fragmentPlaceholder,fragment).commit()
+
+    private fun replaceFragments(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()
     }
+
     override fun onClick(view: View?) {
-        when(view!!.id){
-            R.id.actionBarScanner->{
-                val i = Intent(this@HomeActivity,ScannerActivity::class.java)
+        when (view!!.id) {
+            R.id.actionBarScanner -> {
+                val i = Intent(this@HomeActivity, ScannerActivity::class.java)
                 startActivity(i)
             }
         }

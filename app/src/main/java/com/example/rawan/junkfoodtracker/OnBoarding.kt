@@ -26,15 +26,9 @@ import com.hololo.tutorial.library.TutorialActivity
         val step1 = Step.Builder()
 
         addFragment( step1
-                .setTitle("So lets start by adding our first food by clicking here")
+                .setTitle("So lets start by adding our first food")
                 .setBackgroundColor(Color.parseColor("#b53f3f")) // int background color
                 .setDrawable(R.drawable.food2)
-//                 .setView(R.layout.main_activity)// int top drawable
-                .build())
-
-    val step2 = Step.Builder()
-        addFragment( step2
-                 .setView(R.layout.view_slider)// int top drawable
                 .build())
     }
 

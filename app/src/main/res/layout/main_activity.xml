@@ -16,7 +16,7 @@
         android:layout_marginTop="44dp"
         android:textColorHint="@color/colorPrimaryDark"
         app:errorEnabled="true"
-        app:errorTextAppearance="@color/colorPrimaryDark"
+        android:hint="Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -26,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email"
             android:inputType="textEmailAddress"
             android:textColorHint="@color/colorPrimaryDark"
             android:textColorLink="@color/colorPrimaryDark" />
@@ -41,7 +40,7 @@
         android:layout_marginTop="240dp"
         android:textColorHint="@color/colorPrimaryDark"
         app:errorEnabled="true"
-        app:errorTextAppearance="@color/colorPrimaryDark"
+        android:hint="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -51,7 +50,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
             android:inputType="textPassword"
             android:textColorHint="@color/colorPrimaryDark"
             android:textColorLink="@color/colorAccent" />
@@ -74,25 +72,24 @@
 
     <Button
         android:id="@+id/signInBtn"
-        android:layout_width="278dp"
-        android:layout_height="47dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:background="@color/colorPrimary"
-        android:text="@string/sign_in"
         android:shadowColor="@color/cardview_light_background"
+        android:text="@string/sign_in"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etPassLayout"
+        app:layout_constraintStart_toStartOf="@+id/etPassLayout"
         app:layout_constraintTop_toBottomOf="@+id/etPassLayout" />
 
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="104dp"

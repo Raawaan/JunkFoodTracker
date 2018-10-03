@@ -107,7 +107,7 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                         // See API reference for complete list of supported types
                         when (valueType) {
                             FirebaseVisionBarcode.TYPE_PRODUCT->{
-                                if (isOnline(this@ScannerActivity))
+                                if (InternetConnection.isOnline(this@ScannerActivity))
                                     connection(barcode.displayValue!!.toLong())
                                 else
                                     Toast.makeText(this@ScannerActivity, getString(R.string.connection), Toast.LENGTH_SHORT).show()
@@ -137,9 +137,16 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                     updateViews(brandName,energy,saturatedFat,sugars,carbohydrates)
 
                     plusFab.setOnClickListener{
+                        if(counterPM!=10){
                         counterPM++
-                        counterPlusMinus.text=counterPM.toString()}
-                    minusFab.setOnClickListener{if (counterPM!=0){
+                        counterPlusMinus.text=counterPM.toString()
+                        }
+                    else
+                            Toast.makeText(this@ScannerActivity, "10 is the max", Toast.LENGTH_SHORT).show()
+                    }
+
+                    minusFab.setOnClickListener{
+                        if (counterPM!=1){
                         counterPM--
                         counterPlusMinus.text=counterPM.toString()
                     }
@@ -245,11 +252,5 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
                 }
             }
         }
-    }
-    fun isOnline(context: Context): Boolean {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
-        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
-        return isConnected
     }
 }

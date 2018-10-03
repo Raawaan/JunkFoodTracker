@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -45,6 +46,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         loginButtonIn.setOnClickListener(this)
         gmailBtnIn.setOnClickListener(this)
         signInBtn.setOnClickListener(this)
+        etPassword.setOnEditorActionListener { v, actionId, event ->
+            if (InternetConnection.isOnline(this)){
+                if (confirm()) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        firebaseSignIn()
+                    }}
+                else
+                    Toast.makeText(this, getString(R.string.connection), Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
     }
     fun facebookHandler() {
         mCallbackManager = CallbackManager.Factory.create()
@@ -147,22 +159,36 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.signInBtn->{
-                val email = etEmail.text.toString()
-                val password = etPassword.text.toString()
+                if (InternetConnection.isOnline(this))
                 if (confirm()){
-                    fbAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this) {
-                        if (it.isSuccessful)
-                            openActivity()
-                        else
-                            Toast.makeText(this, getString(R.string.invalidEmailPass), Toast.LENGTH_SHORT).show()
-                    }
+                    firebaseSignIn()
                 }
+                else
+                    Toast.makeText(this, getString(R.string.connection), Toast.LENGTH_SHORT).show()
+
             }
         }
     }
+
+    private fun firebaseSignIn() {
+        val email = etEmail.text.toString()
+        val password = etPassword.text.toString()
+        fbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) {
+            if (it.isSuccessful)
+                openActivity()
+            else
+                Toast.makeText(this, getString(R.string.invalidEmailPass), Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun openActivity(){
+        if(InternetConnection.isOnline(this)){
         val i= Intent(this@MainActivity,HomeActivity::class.java)
         startActivity(i)
         finish()
+        }
+        else
+            Toast.makeText(this, getString(R.string.connection), Toast.LENGTH_SHORT).show()
+
     }
 }
