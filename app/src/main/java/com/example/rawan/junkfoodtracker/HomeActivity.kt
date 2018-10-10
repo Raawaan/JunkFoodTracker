@@ -18,7 +18,10 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.home.*
 import android.widget.TextView
 import android.widget.Toast
+import com.example.rawan.junkfoodtracker.Scanner.View.ScannerActivity
+import com.example.rawan.junkfoodtracker.Scanner.View.ScannerView
 import java.security.AccessController.getContext
+import java.util.*
 
 
 /**

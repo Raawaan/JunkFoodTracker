@@ -1,14 +1,13 @@
 package com.example.rawan.junkfoodtracker
 
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import com.example.rawan.junkfoodtracker.SignUp.View.SignUpActivity
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -26,7 +25,6 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.GoogleAuthProvider
 import java.util.*
-import java.util.regex.Pattern
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -156,7 +154,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 googleHelper()
                 signInWithGoogle()
             }
-            R.id.signUpBtn->{ val intent=Intent(this@MainActivity,SignUp::class.java)
+            R.id.signUpBtn->{ val intent=Intent(this@MainActivity, SignUpActivity::class.java)
                 startActivity(intent)
             }
             R.id.signInBtn->{

@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp"
+        <activity android:name=".SignUp.View.SignUpActivity"
             android:screenOrientation="portrait"/>
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             tools:replace="android:value"
@@ -43,7 +43,7 @@
             android:exported="false"/>
                <activity android:name=".OnBoarding"
             android:exported="false"/>
-        <activity android:name=".ScannerActivity"
+        <activity android:name=".Scanner.View.ScannerActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize"
             />
