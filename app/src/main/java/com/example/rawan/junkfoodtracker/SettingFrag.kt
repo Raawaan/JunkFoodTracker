@@ -61,26 +61,4 @@ saveSetting.setOnClickListener {
     Toast.makeText(activity, "Thank You", Toast.LENGTH_SHORT).show()
         }
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-//
-//        val shredPref= PreferenceManager.getDefaultSharedPreferences(activity)
-//        preference?.setSummary(shredPref.getString(preference?.key,"2000"))
-//
-//        val preferenceFat=preferenceManager.findPreference(getString(R.string.saturated_fat_key))
-//        preferenceFat?.setSummary(shredPref.getString(preferenceFat?.key,"30"))
-//
-//        val preferenceCarb=preferenceManager.findPreference(getString(R.string.carbohydrates_key))
-//        preferenceCarb?.setSummary(shredPref.getString(preferenceCarb?.key,"20"))
-//
-//        val preferenceSug=preferenceManager.findPreference(getString(R.string.sugars_key))
-//        preferenceSug?.setSummary(shredPref.getString(preferenceSug?.key,"38"))
-    }
-
-//    private fun replaceFragments(fragment: Fragment){
-//        val fragmentTransaction= fragmentManager?.beginTransaction()
-//        fragmentTransaction?.replace(R.id.
-//                fragmentPlaceholder,fragment)?.commit()
-//    }
 }

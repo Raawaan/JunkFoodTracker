@@ -35,7 +35,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         handleNavDrawer()
         navDrawerHeader()
     }
-
     override fun onResume() {
         super.onResume()
         val fm = supportFragmentManager.findFragmentByTag("a")
@@ -62,7 +61,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun handleNavDrawer() {
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar,
+                 this, drawer_layout, toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)

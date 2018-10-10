@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.X
 import android.view.ViewGroup
 
 /**
@@ -30,11 +31,10 @@ class AbstractFrag:android.support.v4.app.Fragment(){
         // set up stuff.
         val tabLayout : TabLayout = x.findViewById(R.id.tabs)
         val viewPager: ViewPager = x.findViewById(R.id.viewpager)
-
         // create a new adapter for our pageViewer. This adapters returns child fragments as per the positon of the page Viewer.
         viewPager.adapter=MyAdapter(childFragmentManager)
         // this is a workaround
-        tabLayout.post(Runnable {
+        tabLayout.post( {
             //provide the viewPager to TabLayout.
             tabLayout.setupWithViewPager(viewPager)
         })
@@ -52,12 +52,10 @@ class AbstractFrag:android.support.v4.app.Fragment(){
         //return the fragment with respect to page position.
         override fun getItem( position:Int): Fragment
         {
-
             return when (position){
-                0 ->  HomeFrag()
+                0 -> HomeFrag()
                 else ->CalenderFrag()
             }
-
         }
 
         override fun getCount():Int {

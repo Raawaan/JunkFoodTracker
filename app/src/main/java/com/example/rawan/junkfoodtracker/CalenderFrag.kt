@@ -46,7 +46,6 @@ class CalenderFrag : android.support.v4.app.Fragment(){
     private lateinit var JFTDatabase: JFTDatabase
     private lateinit var toDate:Date
     private lateinit var fromDate:Date
-
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onStart() {
         super.onStart()
@@ -114,11 +113,11 @@ class CalenderFrag : android.support.v4.app.Fragment(){
     @SuppressLint("SetTextI18n")
     private fun bottomSheetLogic(userID: Int) {
         val calender = Calendar.getInstance()
-        var year = calender.get(Calendar.YEAR)
-        var month = calender.get(Calendar.MONTH)
-        var day = calender.get(Calendar.DAY_OF_MONTH)
+        val year = calender.get(Calendar.YEAR)
+        val month = calender.get(Calendar.MONTH)
+        val day = calender.get(Calendar.DAY_OF_MONTH)
         fromBtn.setOnClickListener {
-            var fromPicker = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
+            val fromPicker = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
 
                 tvFrom.text = " " + mDayOfMonth + "/" + mMonth.plus(1) + "/" + mYear
                 calender.set(Calendar.YEAR, mYear)

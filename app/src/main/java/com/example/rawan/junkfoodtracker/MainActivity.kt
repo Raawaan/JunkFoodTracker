@@ -1,5 +1,6 @@
 package com.example.rawan.junkfoodtracker
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -122,7 +123,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
     fun validateTitle():Boolean{
-        var email=etEmailLayout.editText?.text.toString().trim()
+        val email=etEmailLayout.editText?.text.toString().trim()
         val ePattern = Patterns.EMAIL_ADDRESS
         val p = java.util.regex.Pattern.compile(ePattern.toString())
         val m = p.matcher(email)
@@ -133,7 +134,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
     fun validatePassword():Boolean{
-        var pass=etPassLayout.editText?.text.toString().trim()
+        val pass=etPassLayout.editText?.text.toString().trim()
         if(pass.length<7||pass.isEmpty()){
             etPassLayout.error=getString(R.string.invalidPassword)
             return false
