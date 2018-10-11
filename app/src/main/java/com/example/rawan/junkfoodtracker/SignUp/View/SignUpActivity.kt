@@ -40,9 +40,6 @@ import com.facebook.AccessToken
  * Created by rawan on 06/09/18.
  */
 class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
-
-
-
     lateinit var signUpPresenter: SignUpPresenter
     private val RC_SIGN_IN = 9001
     private var mCallbackManager: CallbackManager? = null
@@ -84,7 +81,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
             }
         })
         setPassword.setOnEditorActionListener { _, actionId, _ ->
-
             if (InternetConnection.isOnline(this) && actionId == EditorInfo.IME_ACTION_DONE)
                 signUpPresenter.createFireBaseAccount(setEmail.text.toString(), setPassword.text.toString())
             else
@@ -152,20 +148,16 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(i)
     }
-
     override fun onSignUpSuccess() {
         Toast.makeText(this, getString(R.string.welcome), Toast.LENGTH_SHORT).show()
         openActivity()
     }
-
     override fun onSignUpFailed(e: Exception) {
         Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
     }
-
     override fun onEmailValidationFail(@StringRes errorMsg: Int) {
         setEmailLayout.error = getString(errorMsg)
     }
-
     override fun onPasswordValidationFail(@StringRes errorMsg: Int) {
         setPassLayout.error = getString(errorMsg)
     }

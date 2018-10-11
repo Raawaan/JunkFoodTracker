@@ -13,5 +13,4 @@ interface SignUpPresenter {
     fun handleFacebookSignUpResults(token: AccessToken)
     fun validateEmail(email: String)
     fun validatePassword(password: String)
-    fun validateEmailAndPassword(email: String,password: String)
 }

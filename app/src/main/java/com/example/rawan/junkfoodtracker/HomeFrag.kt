@@ -1,22 +1,17 @@
 package com.example.rawan.junkfoodtracker
 
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.preference.Preference
 import android.preference.PreferenceManager
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.android.todolist.AppExecutors
 import com.example.rawan.junkfoodtracker.Room.BrandNameAndCounter
 import com.example.rawan.junkfoodtracker.Room.DateWithoutTime
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.home_frag.*
-import kotlinx.android.synthetic.main.scanner.*
 import java.util.*
 
 /**
@@ -29,7 +24,6 @@ class HomeFrag : android.support.v4.app.Fragment() {
 
     override fun onStart() {
         super.onStart()
-
 //        val shredPref=PreferenceManager.getDefaultSharedPreferences(activity)
 //                val editor :SharedPreferences.Editor=shredPref.edit()
 //        editor.putString("energy","2000")
@@ -65,17 +59,17 @@ class HomeFrag : android.support.v4.app.Fragment() {
 
     fun updateViews(energy: Long, saturatedFat: Long, sugars: Long, carbohydrates: Long) {
         val shredPref=PreferenceManager.getDefaultSharedPreferences(activity)
-        fragTvEnergy.text = getString(R.string.energy) + energy.toString() + getString(R.string.energy_unit)
-        if (energy > shredPref.getString(getString(R.string.energy_key),"2000").toInt())
-            fragTvEnergy.setTextColor(Color.parseColor("#FF0000"))
-        fragTvSaturatedFat.text = getString(R.string.saturated_fat) + saturatedFat.toString() + getString(R.string.unit)
-        if (saturatedFat > shredPref.getString(getString(R.string.saturated_fat_key),"30").toInt())
-            fragTvSaturatedFat.setTextColor(Color.parseColor("#FF0000"))
-        fragTvSugars.text = getString(R.string.sugars) + sugars.toString() + getString(R.string.unit)
-        if (sugars > shredPref.getString(getString(R.string.sugars_key),"38").toInt())
-            fragTvSugars.setTextColor(Color.parseColor("#FF0000"))
-        fragTvCarbohydrates.text = getString(R.string.carbohydrates) + carbohydrates.toString() + getString(R.string.unit)
-        if (carbohydrates > shredPref.getString(getString(R.string.carbohydrates_key),"20").toInt())
-            fragTvCarbohydrates.setTextColor(Color.parseColor("#FF0000"))
+        fragTvEnergy.append(energy.toString() + getString(R.string.energy_unit))
+        if (energy > shredPref.getString(getString(R.string.energy_key),getString(R.string.energy_default)).toInt())
+            fragTvEnergy.setTextColor(Color.parseColor(getString(R.string.red)))
+        fragTvSaturatedFat.append(saturatedFat.toString() + getString(R.string.unit))
+        if (saturatedFat > shredPref.getString(getString(R.string.saturated_fat_key),getString(R.string.saturatedFat_default)).toInt())
+            fragTvSaturatedFat.setTextColor(Color.parseColor(getString(R.string.red)))
+        fragTvSugars.append(sugars.toString() + getString(R.string.unit))
+        if (sugars > shredPref.getString(getString(R.string.sugars_key),getString(R.string.sugars_default)).toInt())
+            fragTvSugars.setTextColor(Color.parseColor(getString(R.string.red)))
+        fragTvCarbohydrates.append(carbohydrates.toString() + getString(R.string.unit))
+        if (carbohydrates > shredPref.getString(getString(R.string.carbohydrates_key),getString(R.string.carbohydrates_default)).toInt())
+            fragTvCarbohydrates.setTextColor(Color.parseColor(getString(R.string.red)))
     }
 }

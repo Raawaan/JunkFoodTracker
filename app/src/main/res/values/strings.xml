@@ -31,8 +31,8 @@
     <string name="invalidEmailPass">incorrect email or password</string>
     <string name="today_s_products">Today\'s Products</string>
     <string name="yesterday_s_products">Yesterday\'s Products</string>
-    <string name="today_s_total_nutirtion_info">Today\'s Total Nutrition Info \u0020</string>
-    <string name="yesterday_s_total_nutirtion_info">Yesterday\'s Total Nutrition Info \u0020</string>
+    <string name="today_s_total_nutrition_info">Today\'s Total Nutrition Info \u0020</string>
+    <string name="yesterday_s_total_nutrition_info">Yesterday\'s Total Nutrition Info \u0020</string>
     <string name="connection">Please Check Your Internet Connection And Try Again</string>
     <string name="nutTitle">Total Nutrition Info of\u0020</string>
     <string name="productTitle">Products of\u0020</string>
@@ -40,4 +40,12 @@
     <string name="saturated_fat_key">saturated_fat</string>
     <string name="sugars_key">sugars</string>
     <string name="carbohydrates_key">carbohydrates</string>
+    <string name="title_welcome">Welcome To Junk Food Tracker!</string>
+    <string name="desc_welcome">JFT helps you track your daily food by scanning barcode, counting the total calories and other important minerals</string>
+    <string name="title_start">So lets start by adding our first food</string>
+    <string name="energy_default">2000</string>
+    <string name="saturatedFat_default">30</string>
+    <string name="sugars_default">38</string>
+    <string name="carbohydrates_default">20</string>
+    <string name="invalid_period">Invalid Period</string>
 </resources>

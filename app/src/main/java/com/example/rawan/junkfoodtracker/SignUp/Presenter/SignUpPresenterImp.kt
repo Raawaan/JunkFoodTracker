@@ -14,14 +14,6 @@ import java.util.regex.Pattern
  */
 class SignUpPresenterImp(private val fireBaseSignUpModel: FireBaseSignUpModel, private val googleSignUpModel: GoogleSignUpModel,
                          private val facebookSignUpModel: FacebookSignUpModel, private val signUpView: SignUpView) : SignUpPresenter {
-    override fun validateEmailAndPassword(email: String, password: String) {
-
-        if (email.isValidEmail() && password.isValidPassword()) {
-
-
-        }
-
-    }
 
     override fun handleFacebookSignUpResults(token: AccessToken) {
         facebookSignUpModel.signUpWithFacebook(token, onSuccess = {
@@ -40,8 +32,6 @@ class SignUpPresenterImp(private val fireBaseSignUpModel: FireBaseSignUpModel, p
     }
 
     override fun createFireBaseAccount(email: String, password: String) {
-
-
         if (!email.isValidEmail()) {
             signUpView.onEmailValidationFail(R.string.invalidEmail)
             return

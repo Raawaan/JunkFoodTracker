@@ -15,7 +15,7 @@
         android:background="@color/colorPrimary"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/today_s_total_nutirtion_info"
+        android:text="@string/today_s_total_nutrition_info"
         android:textColor="@color/cardview_light_background"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"

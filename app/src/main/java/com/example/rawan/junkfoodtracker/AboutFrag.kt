@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.tab_fragment_layout.*
  */
 
 class AboutFrag:android.support.v4.app.Fragment(){
-
     companion object {
         fun newInstance():AboutFrag {
             return AboutFrag()

@@ -1,9 +1,7 @@
 package com.example.rawan.junkfoodtracker
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
-import android.preference.Preference
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -17,11 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.home.*
 import android.widget.TextView
-import android.widget.Toast
 import com.example.rawan.junkfoodtracker.Scanner.View.ScannerActivity
-import com.example.rawan.junkfoodtracker.Scanner.View.ScannerView
-import java.security.AccessController.getContext
-import java.util.*
+import com.example.rawan.junkfoodtracker.SignIn.View.SignInActivity
 
 
 /**
@@ -74,7 +69,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.nav_logout -> {
                     fbAuth.signOut()
                     LoginManager.getInstance().logOut()
-                    val i = Intent(this, MainActivity::class.java)
+                    val i = Intent(this, SignInActivity::class.java)
                     startActivity(i)
                     finish()
                 }
