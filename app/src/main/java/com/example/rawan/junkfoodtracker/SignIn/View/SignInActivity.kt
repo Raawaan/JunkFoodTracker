@@ -120,13 +120,9 @@ class SignInActivity : AppCompatActivity(),SignInView, View.OnClickListener {
         }
     }
     private fun openActivity() {
-        if (InternetConnection.isOnline(this)) {
             val i = Intent(this@SignInActivity, HomeActivity::class.java)
             startActivity(i)
             finish()
-        } else
-            Toast.makeText(this, getString(R.string.connection), Toast.LENGTH_SHORT).show()
-
     }
     override fun onSignInSuccess() {
         openActivity()

@@ -28,8 +28,7 @@ import android.app.DatePickerDialog
 import com.example.rawan.junkfoodtracker.InternetConnection
 import com.example.rawan.junkfoodtracker.R
 import com.example.rawan.junkfoodtracker.Response
-import com.example.rawan.junkfoodtracker.Room.DateWithoutTime
-import com.example.rawan.roomjft.Room.*
+import com.example.rawan.junkfoodtracker.Room.*
 import java.text.SimpleDateFormat
 
 
@@ -38,9 +37,9 @@ import java.text.SimpleDateFormat
  */
 class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     val api = API.create()
-    val fbAuth= FirebaseAuth.getInstance()
+    private val fbAuth= FirebaseAuth.getInstance()
     var counterPM=1
-    val calender=Calendar.getInstance()
+    private val calender=Calendar.getInstance()
     val date = Date()
     var selectedDate= Date()
 
@@ -48,7 +47,7 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     lateinit var photo:Bitmap
     lateinit var JFTDatabase: JFTDatabase
     companion object {
-        val CHOOSE_IMAGE_REQUEST=10
+       const val CHOOSE_IMAGE_REQUEST=10
     }
     lateinit var  image:FirebaseVisionImage
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,13 +55,13 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
         setContentView(R.layout.scanner)
         setSupportActionBar(Scannertoolbar)
         Stetho.initializeWithDefaults(this)
-        supportActionBar?.title = "Scanner"
+        supportActionBar?.title = getString(R.string.scanner_activity_name)
         choose_img.setOnClickListener(this)
-        var year = calender.get(Calendar.YEAR)
-        var month = calender.get(Calendar.MONTH)
-        var day = calender.get(Calendar.DAY_OF_MONTH)
+        val year = calender.get(Calendar.YEAR)
+        val month = calender.get(Calendar.MONTH)
+        val day = calender.get(Calendar.DAY_OF_MONTH)
         ivDate.setOnClickListener {
-            var datePicker = DatePickerDialog(this@ScannerActivity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
+            val datePicker = DatePickerDialog(this@ScannerActivity, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
                 dateTitle.text = " " + mDayOfMonth + "/" + mMonth + "/" + mYear
                 calender.set(Calendar.YEAR,mYear )
                 calender.set(Calendar.MONTH, mMonth)
@@ -162,7 +161,7 @@ class ScannerActivity:AppCompatActivity(),View.OnClickListener{
     }
     fun addData(productBarcode:Long,name:String,energy :Long,saturatedFat:Long,sugars:Long,carbohydrates:Long,date :Date){
         AppExecutors.instance?.diskIO()?.execute {
-            JFTDatabase= com.example.rawan.roomjft.Room.JFTDatabase.getInstance(applicationContext)
+            JFTDatabase= com.example.rawan.junkfoodtracker.Room.JFTDatabase.getInstance(applicationContext)
 
             var isBarcodeExisted= JFTDatabase.productDao().selectProductWithBarcode(productBarcode)
             if (isBarcodeExisted==0.toLong()){

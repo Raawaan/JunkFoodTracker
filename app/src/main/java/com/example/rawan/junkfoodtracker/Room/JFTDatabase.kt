@@ -1,4 +1,4 @@
-package com.example.rawan.roomjft.Room
+package com.example.rawan.junkfoodtracker.Room
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
@@ -11,7 +11,7 @@ import android.content.Context
  */
 @Database(entities = [(UserEntity::class),(ProductEntity::class),(UserProductEntity::class)], version =1, exportSchema = false)
 @TypeConverters(DataConverter::class)
-    abstract class JFTDatabase : RoomDatabase() {
+    abstract class  JFTDatabase : RoomDatabase() {
     abstract fun userDao():UserDao
     abstract fun upDao():UserProductDao
     abstract fun productDao():ProductDao

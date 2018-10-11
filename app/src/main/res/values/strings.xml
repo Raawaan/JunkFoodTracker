@@ -48,4 +48,7 @@
     <string name="sugars_default">38</string>
     <string name="carbohydrates_default">20</string>
     <string name="invalid_period">Invalid Period</string>
+    <string name="today">Today</string>
+    <string name="calender">Calender</string>
+    <string name="scanner_activity_name">Scanner</string>
 </resources>

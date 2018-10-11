@@ -23,7 +23,7 @@ import com.example.rawan.junkfoodtracker.SignIn.View.SignInActivity
  * Created by rawan on 08/09/18.
  */
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
-    var fbAuth = FirebaseAuth.getInstance()
+    private val fbAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
@@ -37,17 +37,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         super.onResume()
         val fm = supportFragmentManager.findFragmentByTag("a")
         if (fm != null && fm.isVisible) {
-//        Toast.makeText(this,"hmada Opa",Toast.LENGTH_LONG).show()
             val fragTransaction = supportFragmentManager.beginTransaction()
             fragTransaction.detach(fm)
             fragTransaction.attach(fm)
             fragTransaction.commit()
         }
-
     }
-
     private fun navDrawerHeader() {
-        if (fbAuth.getCurrentUser() != null) {
+        if (fbAuth.currentUser != null) {
             val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
             val headerView = navigationView.getHeaderView(0)
             val navUsername = headerView.findViewById(R.id.nav_name) as TextView
@@ -56,7 +53,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             navEmail.text = fbAuth.currentUser?.email
         }
     }
-
     private fun handleNavDrawer() {
         val toggle = ActionBarDrawerToggle(
                  this, drawer_layout, toolbar,
@@ -87,12 +83,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
             }
-            // Close the drawer
             drawer_layout.closeDrawer(GravityCompat.START)
             true
         }
     }
-
     override fun onBackPressed() {
         val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -101,7 +95,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             super.onBackPressed()
         }
     }
-
     private fun replaceFragments(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentPlaceholder, fragment).commit()

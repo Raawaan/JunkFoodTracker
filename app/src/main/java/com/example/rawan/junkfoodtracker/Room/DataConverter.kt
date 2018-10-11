@@ -1,4 +1,4 @@
-package com.example.rawan.roomjft.Room
+package com.example.rawan.junkfoodtracker.Room
 
 import android.arch.persistence.room.TypeConverter
 import com.example.rawan.junkfoodtracker.Room.DateWithoutTime

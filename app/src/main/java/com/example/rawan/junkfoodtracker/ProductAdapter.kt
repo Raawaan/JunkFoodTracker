@@ -1,6 +1,5 @@
 package com.example.rawan.junkfoodtracker
 
-import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,23 +10,14 @@ import kotlinx.android.synthetic.main.product_item.view.*
 /**
  * Created by rawan on 18/09/18.
  */
-class ProductAdapter(val productList: List<BrandNameAndCounter>?): RecyclerView.Adapter<ProductAdapter.ProductViewholderView>(){
-    open class ProductViewholderView(itemView:View):RecyclerView.ViewHolder(itemView)
-
-    @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: ProductViewholderView, position: Int) {
-        if (holder!=null){
-            val lista = productList?.get(position)
-            holder.itemView.tvproducts.text =lista?.brandName+" " +
-                    ""+lista?.counter.toString()
-
-        }    }
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewholderView {
-        return ProductViewholderView(LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false))
+class ProductAdapter(private val productList: List<BrandNameAndCounter>?): RecyclerView.Adapter<ProductAdapter.ProductHolderView>(){
+    open class ProductHolderView(itemView:View):RecyclerView.ViewHolder(itemView)
+    override fun onBindViewHolder(holder: ProductHolderView, position: Int) {
+            val listOfProducts = productList?.get(position)
+            holder.itemView.tvproducts.append(listOfProducts?.brandName+listOfProducts?.counter.toString())
     }
-
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolderView {
+        return ProductHolderView(LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false))
+    }
     override fun getItemCount() = productList!!.size
 }

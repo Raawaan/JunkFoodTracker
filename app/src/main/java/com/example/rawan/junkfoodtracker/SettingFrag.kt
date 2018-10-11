@@ -30,11 +30,9 @@ class SettingFrag:  android.support.v4.app.Fragment(){
             return SettingFrag()
         }
     }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.setting_frag, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val shredPref=PreferenceManager.getDefaultSharedPreferences(activity)
@@ -43,7 +41,7 @@ class SettingFrag:  android.support.v4.app.Fragment(){
         tvSugarsSetting.text=shredPref.getString(getString(R.string.sugars_key),"20")
         tvCarboSetting.text=shredPref.getString(getString(R.string.carbohydrates_key),"38")
                 val editor :SharedPreferences.Editor=shredPref.edit()
-saveSetting.setOnClickListener {
+        saveSetting.setOnClickListener {
     if (!etEnergy.text.isNullOrEmpty())
                 editor.putString(getString(R.string.energy_key),etEnergy.text.toString())
     if (!etSaturatedFat.text.isNullOrEmpty())
