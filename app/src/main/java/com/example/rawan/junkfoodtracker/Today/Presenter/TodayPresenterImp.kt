@@ -1,5 +1,6 @@
 package com.example.rawan.junkfoodtracker.Today.Presenter
 
+import com.example.rawan.junkfoodtracker.AsyncTaskJFT
 import com.example.rawan.junkfoodtracker.Room.JFTDatabase
 import com.example.rawan.junkfoodtracker.Today.Model.TodayModel
 import com.example.rawan.junkfoodtracker.Today.View.TodayView
@@ -9,14 +10,18 @@ import com.example.rawan.junkfoodtracker.Today.View.TodayView
  */
 class TodayPresenterImp(private val todayModel: TodayModel,private val todayView: TodayView):TodayPresenter{
     override fun requestCurrentUserProductsList() {
-        todayModel.requestUserProductsList(onSuccess = {
-        todayView.acceptUsersProductList(it)
-        })
+        AsyncTaskJFT(inBackground = {
+            todayModel.requestUserProductsList()
+        },onSuccess = {
+            todayView.acceptUsersProductList(it)
+        }).execute()
     }
     override fun requestCurrentUserNutritionInfo() {
-        todayModel.requestUserNutritionInformation(onSuccess = {
+        AsyncTaskJFT(inBackground = {
+            todayModel.requestUserNutritionInformation()
+        },onSuccess = {
             todayView.acceptNutritionInfo(it)
-        })
+        }).execute()
     }
 
 }

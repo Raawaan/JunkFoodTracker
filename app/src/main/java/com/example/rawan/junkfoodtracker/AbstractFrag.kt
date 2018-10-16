@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.rawan.junkfoodtracker.Calender.View.CalenderFragment
 import com.example.rawan.junkfoodtracker.Today.View.TodayFragment
 
 /**
@@ -38,7 +39,7 @@ class AbstractFrag:android.support.v4.app.Fragment(){
         {
             return when (position){
                 0 -> TodayFragment()
-                else ->CalenderFrag()
+                else -> CalenderFragment()
             }
         }
         override fun getCount():Int {

@@ -22,5 +22,5 @@ interface UserDao{
     fun selectUserWithEmail(email:String):Int
 
     @Insert
-    fun insertUser(userEntry: UserEntity)
+    fun insertUser(userEntry: UserEntity):Long
 }
