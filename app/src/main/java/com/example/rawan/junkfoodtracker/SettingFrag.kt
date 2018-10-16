@@ -43,7 +43,7 @@ class SettingFrag:  android.support.v4.app.Fragment(){
             tvSugarsSetting.text=SharedPreferenceHelper.getValuesSharedPref(activity!!.applicationContext).getString(getString(R.string.sugars_key),"20")
             tvCarboSetting.text=SharedPreferenceHelper.getValuesSharedPref(activity!!.applicationContext).getString(getString(R.string.carbohydrates_key),"38")
 
-            Toast.makeText(activity, "Thank You", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.thank_you), Toast.LENGTH_SHORT).show()
         }
     }
 }

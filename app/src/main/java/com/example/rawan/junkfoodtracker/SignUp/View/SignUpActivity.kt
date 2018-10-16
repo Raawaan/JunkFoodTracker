@@ -56,16 +56,12 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
         gmailBtn.setOnClickListener(this)
         setEmail.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable?) {
-
-                signUpPresenter.validateEmail(editable.toString())
+                 signUpPresenter.validateEmail(editable.toString())
                 if (!setEmailLayout.editText?.text.toString().trim().isValidEmail())
                     setEmailLayout.error = getString(R.string.invalidEmail)
-
             }
-
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
         })
@@ -73,10 +69,8 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
             override fun afterTextChanged(editable: Editable?) {
                 signUpPresenter.validatePassword(editable.toString())
             }
-
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
         })
@@ -85,12 +79,9 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
                 signUpPresenter.createFireBaseAccount(setEmail.text.toString(), setPassword.text.toString())
             else
                 Toast.makeText(this, getString(R.string.connection), Toast.LENGTH_SHORT).show()
-
             return@setOnEditorActionListener true
-
         }
     }
-
     private fun signInWithGoogle() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -100,7 +91,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
         val intent = mGoogleSignInClient.signInIntent
         startActivityForResult(intent, RC_SIGN_IN)
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
@@ -109,7 +99,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
         } else
             mCallbackManager?.onActivityResult(requestCode, resultCode, data)
     }
-
     private fun facebookHandler() {
         mCallbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(getString(R.string.pp), getString(R.string.email)))
@@ -118,17 +107,14 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
                     override fun onSuccess(loginResult: LoginResult) {
                         handleFacebookAccessToken(loginResult.accessToken)
                     }
-
                     override fun onCancel() {
                         Toast.makeText(this@SignUpActivity, getString(R.string.facebookCancel), Toast.LENGTH_SHORT).show()
                     }
-
                     override fun onError(error: FacebookException?) {
                         Toast.makeText(this@SignUpActivity, getString(R.string.facebookError), Toast.LENGTH_SHORT).show()
                     }
                 })
     }
-
     private fun handleFacebookAccessToken(token: AccessToken) = signUpPresenter.handleFacebookSignUpResults(token)
     override fun onClick(view: View?) {
         when (view?.id) {
@@ -142,7 +128,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
             }
         }
     }
-
     private fun openActivity() {
         val i = Intent(this@SignUpActivity, OnBoarding::class.java)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

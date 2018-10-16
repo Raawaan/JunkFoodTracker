@@ -18,11 +18,12 @@
     <string name="authentication_issue">Authentication Failed</string>
 
     <string name="action_settings">Settings</string>
-    <string name="brand_name">Brand Name:\u0020</string>
-    <string name="energy">Energy\u0020</string>
-    <string name="saturated_fat">Saturated Fat\u0020</string>
-    <string name="sugars">Sugars\u0020</string>
-    <string name="carbohydrates">Carbohydrates\u0020</string>
+    <string name="date_format">%s %s %s</string>
+    <string name="brand_name">Brand Name:\u0020 %s</string>
+    <string name="energy">Energy\u0020 %s %s</string>
+    <string name="saturated_fat">Saturated Fat\u0020  %s %s</string>
+    <string name="sugars">Sugars\u0020  %s %s</string>
+    <string name="carbohydrates">Carbohydrates\u0020 %s %s</string>
     <string name="invalidPassword">Password must contain capital/small letters, digit and bigger than 8 characters</string>
     <string name="invalidEmail">Invalid Email</string>
     <string name="facebookError">facebook error</string>
@@ -34,8 +35,8 @@
     <string name="today_s_total_nutrition_info">Today\'s Total Nutrition Info \u0020</string>
     <string name="yesterday_s_total_nutrition_info">Yesterday\'s Total Nutrition Info \u0020</string>
     <string name="connection">Please Check Your Internet Connection And Try Again</string>
-    <string name="nutTitle">Total Nutrition Info of\u0020</string>
-    <string name="productTitle">Products of\u0020</string>
+    <string name="nutTitle">Total Nutrition Info of\u0020%s</string>
+    <string name="productTitle">Products of\u0020 %s</string>
     <string name="energy_key">energy</string>
     <string name="saturated_fat_key">saturated_fat</string>
     <string name="sugars_key">sugars</string>
@@ -52,4 +53,5 @@
     <string name="calender">Calender</string>
     <string name="scanner_activity_name">Scanner</string>
     <string name="warning_msg">Invalid Period</string>
+    <string name="thank_you">Thank You</string>
 </resources>

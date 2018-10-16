@@ -8,7 +8,7 @@ import android.support.annotation.StringRes
 interface SignInView {
     fun onSignInSuccess()
     fun onSignInFailed(@StringRes errorMsg: Int)
-    fun onSignInFailedWithExeption(e:Exception)
+    fun onSignInFailedWithException(e:Exception)
     fun onEmailValidationFail(@StringRes errorMsg: Int)
     fun onEmailValidationSuccess()
     fun onPasswordValidationFail(@StringRes errorMsg: Int)

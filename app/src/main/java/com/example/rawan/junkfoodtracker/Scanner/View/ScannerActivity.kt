@@ -18,6 +18,7 @@ import com.facebook.stetho.Stetho
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import com.example.rawan.junkfoodtracker.InternetConnection
 import com.example.rawan.junkfoodtracker.R
@@ -63,7 +64,8 @@ class ScannerActivity : AppCompatActivity(), ScannerView {
         val day = calender.get(Calendar.DAY_OF_MONTH)
         ivDate.setOnClickListener {
             val datePicker = DatePickerDialog(this@ScannerActivity, DatePickerDialog.OnDateSetListener { _, mYear, mMonth, mDayOfMonth ->
-                dateTitle.text = " " + mDayOfMonth + "/" + mMonth + "/" + mYear
+                dateTitle.text = getString(R.string.date_format,mDayOfMonth.toString(),mMonth.toString()
+                        ,mYear.toString())
                 calender.set(Calendar.YEAR, mYear)
                 calender.set(Calendar.MONTH, mMonth)
                 calender.set(Calendar.DAY_OF_MONTH, mDayOfMonth)
@@ -110,7 +112,6 @@ class ScannerActivity : AppCompatActivity(), ScannerView {
                 productEntity.saturatedFat, productEntity.sugars, productEntity.carbohydrates)
 
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CHOOSE_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
@@ -124,14 +125,14 @@ class ScannerActivity : AppCompatActivity(), ScannerView {
     }
     private fun updateViews(name: String, energy: Long, saturatedFat: Long, sugars: Long, carbohydrates: Long) {
         dataLayout.visibility = View.VISIBLE
-        val dateFormat = SimpleDateFormat("dd/M/yyyy")
+        val dateFormat = SimpleDateFormat("dd/M/yyyy", Locale.ENGLISH)
         dateTitle.text = dateFormat.format(calender.time)
         counterPlusMinus.text = counterPM.toString()
-        tvBrandTag.text = getString(R.string.brand_name) + name
-        tvEnergy.text = getString(R.string.energy) + energy.toString() + getString(R.string.energy_unit)
-        tvSaturatedFat.text = getString(R.string.saturated_fat) + saturatedFat.toString() + getString(R.string.unit)
-        tvSugars.text = getString(R.string.sugars) + sugars.toString() + getString(R.string.unit)
-        tvCarbohydrates.text = getString(R.string.carbohydrates) + carbohydrates.toString() + getString(R.string.unit)
+        tvBrandTag.text = getString(R.string.brand_name,name)
+        tvEnergy.text = getString(R.string.energy,energy.toString(), getString(R.string.energy_unit))
+        tvSaturatedFat.text = getString(R.string.saturated_fat,saturatedFat.toString(), getString(R.string.unit))
+        tvSugars.text = getString(R.string.sugars,sugars.toString(),getString(R.string.unit))
+        tvCarbohydrates.text = getString(R.string.carbohydrates,carbohydrates.toString() ,getString(R.string.unit))
     }
     private fun setupPermissions(){
         val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -149,7 +150,6 @@ class ScannerActivity : AppCompatActivity(), ScannerView {
     override fun onFailed(msg: String) {
         Toast.makeText(this, msg,Toast.LENGTH_LONG).show()
     }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {

@@ -10,10 +10,9 @@ import android.preference.PreferenceManager
  */
 object SharedPreferenceHelper {
     fun getValuesSharedPref(context: Context):SharedPreferences {
-    return PreferenceManager.getDefaultSharedPreferences(context)
- }
+        return PreferenceManager.getDefaultSharedPreferences(context)
+    }
     fun setValuesSharedPref(context: Context,key:String,value:String){
-    return  PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key,value).apply()
- }
-
+         return  PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key,value).apply()
+    }
 }

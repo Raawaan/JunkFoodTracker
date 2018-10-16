@@ -23,5 +23,4 @@ class TodayPresenterImp(private val todayModel: TodayModel,private val todayView
             todayView.acceptNutritionInfo(it)
         }).execute()
     }
-
 }

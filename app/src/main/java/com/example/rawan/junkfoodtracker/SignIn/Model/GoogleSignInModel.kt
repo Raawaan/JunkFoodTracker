@@ -19,13 +19,11 @@ class GoogleSignInModel(private var fbAuth: FirebaseAuth){
                 onSuccess()
             },onFailed = {
                 onFailedNoExp()
-                //                Toast.makeText(this, getString(R.string.authentication_issue) + " ${it.exception} ", Toast.LENGTH_SHORT).show()
             })
         } catch (e: Exception) {
             onFailed(e)
         }
-    }
-
+     }
     private fun fireBaseAuthWithGoogle(acct: GoogleSignInAccount, onSuccess: () -> Unit, onFailed: () -> Unit) {
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         fbAuth.signInWithCredential(credential).addOnCompleteListener {
@@ -33,7 +31,6 @@ class GoogleSignInModel(private var fbAuth: FirebaseAuth){
                 onFailed()
             else
                 onSuccess()
-//                openActivity()
         }
     }
 }

@@ -22,7 +22,6 @@ class SignUpPresenterImp(private val fireBaseSignUpModel: FireBaseSignUpModel, p
             signUpView.onSignUpFailed(it)
         })
     }
-
     override fun handleGoogleSignUpResults(completedTask: Task<GoogleSignInAccount>) {
         googleSignUpModel.handleGoogleResults(completedTask, onFailed = {
             signUpView.onSignUpFailed(it)
@@ -30,13 +29,11 @@ class SignUpPresenterImp(private val fireBaseSignUpModel: FireBaseSignUpModel, p
             signUpView.onSignUpSuccess()
         })
     }
-
     override fun createFireBaseAccount(email: String, password: String) {
         if (!email.isValidEmail()) {
             signUpView.onEmailValidationFail(R.string.invalidEmail)
             return
         }
-
         if (!password.isValidPassword()) {
             signUpView.onPasswordValidationFail(R.string.invalidPassword)
             return
@@ -47,7 +44,6 @@ class SignUpPresenterImp(private val fireBaseSignUpModel: FireBaseSignUpModel, p
             signUpView.onSignUpFailed(it)
         })
     }
-
     override fun validateEmail(email: String) {
         if (!email.isValidEmail()) {
             signUpView.onEmailValidationFail(R.string.invalidEmail)
@@ -55,16 +51,13 @@ class SignUpPresenterImp(private val fireBaseSignUpModel: FireBaseSignUpModel, p
         else
             signUpView.onEmailValidationSuccess()
     }
-
     override fun validatePassword(password: String) {
         if (!password.isValidPassword()) {
             signUpView.onPasswordValidationFail(R.string.invalidPassword)
         }
         else
             signUpView.onPasswordValidationSuccess()
-
     }
-
 }
 
 fun String.isValidEmail(): Boolean {

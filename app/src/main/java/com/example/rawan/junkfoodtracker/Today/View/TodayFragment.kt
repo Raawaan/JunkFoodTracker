@@ -50,17 +50,16 @@ class TodayFragment : android.support.v4.app.Fragment(),TodayView {
         myRVItem.adapter = productAdapter
     }
     private fun updateViews(energy: Long, saturatedFat: Long, sugars: Long, carbohydrates: Long) {
-
-        fragTvEnergy.text=getString(R.string.energy)+energy.toString() + getString(R.string.energy_unit)
+        fragTvEnergy.text= getString(R.string.energy,energy.toString(), getString(R.string.energy_unit))
         if (energy > SharedPreferenceHelper.getValuesSharedPref(activity!!.applicationContext).getString(getString(R.string.energy_key),getString(R.string.energy_default)).toInt())
             fragTvEnergy.setTextColor(Color.parseColor(getString(R.string.red)))
-        fragTvSaturatedFat.text=getString(R.string.saturated_fat)+(saturatedFat.toString() + getString(R.string.unit))
+        fragTvSaturatedFat.text=getString(R.string.saturated_fat,saturatedFat.toString(),getString(R.string.unit))
         if (saturatedFat > SharedPreferenceHelper.getValuesSharedPref(activity!!.applicationContext).getString(getString(R.string.saturated_fat_key),getString(R.string.saturatedFat_default)).toInt())
             fragTvSaturatedFat.setTextColor(Color.parseColor(getString(R.string.red)))
-        fragTvSugars.text=getString(R.string.sugars)+(sugars.toString() + getString(R.string.unit))
+        fragTvSugars.text= getString(R.string.sugars,sugars.toString(),getString(R.string.unit) )
         if (sugars > SharedPreferenceHelper.getValuesSharedPref(activity!!.applicationContext).getString(getString(R.string.sugars_key),getString(R.string.sugars_default)).toInt())
             fragTvSugars.setTextColor(Color.parseColor(getString(R.string.red)))
-        fragTvCarbohydrates.text=getString(R.string.carbohydrates)+(carbohydrates.toString() + getString(R.string.unit))
+        fragTvCarbohydrates.text=getString(R.string.carbohydrates,carbohydrates.toString(),getString(R.string.unit))
         if (carbohydrates > SharedPreferenceHelper.getValuesSharedPref(activity!!.applicationContext).getString(getString(R.string.carbohydrates_key),getString(R.string.carbohydrates_default)).toInt())
             fragTvCarbohydrates.setTextColor(Color.parseColor(getString(R.string.red)))
     }

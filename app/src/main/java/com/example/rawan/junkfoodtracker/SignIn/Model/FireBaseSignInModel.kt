@@ -15,8 +15,5 @@ class FireBaseSignInModel(private var fbAuth: FirebaseAuth) {
             else
                 onFailed()
         }
-
     }
-
-
 }

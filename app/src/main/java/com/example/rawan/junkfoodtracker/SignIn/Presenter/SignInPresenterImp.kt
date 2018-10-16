@@ -24,10 +24,9 @@ class SignInPresenterImp(private val fireBaseSignInModel: FireBaseSignInModel,
         },onFailedNoExp = {
             signInView.onSignInFailed(R.string.authentication_issue)
         },onFailed = {
-            signInView.onSignInFailedWithExeption(it)
+            signInView.onSignInFailedWithException(it)
         })
     }
-
     override fun handleFacebookSignInResults(token: AccessToken) {
         facebookSignInModel.signUpWithFacebook(token,
                 onFailed = {
@@ -58,5 +57,4 @@ class SignInPresenterImp(private val fireBaseSignInModel: FireBaseSignInModel,
             signInView.onSignInFailed(R.string.invalidEmailPass)
         })
     }
-
 }

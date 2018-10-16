@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.tab_fragment_layout.*
 
 
 /**
- * Created by rawan on 10/09/ddd
+ * Created by rawan on 10/09/
  */
 
 class AboutFrag:android.support.v4.app.Fragment(){

@@ -34,9 +34,6 @@ import java.util.*
 
 
 class SignInActivity : AppCompatActivity(),SignInView, View.OnClickListener {
-
-
-
     lateinit var signInPresenter: SignInPresenter
     private val rcSignIn = 9001
     private var mCallbackManager: CallbackManager? = null
@@ -75,17 +72,14 @@ class SignInActivity : AppCompatActivity(),SignInView, View.OnClickListener {
                     override fun onSuccess(loginResult: LoginResult) {
                         signInPresenter.handleFacebookSignInResults(loginResult.getAccessToken())
                     }
-
                     override fun onCancel() {
                         Toast.makeText(this@SignInActivity, getString(R.string.facebookCancel), Toast.LENGTH_SHORT).show()
                     }
-
                     override fun onError(error: FacebookException?) {
                         Toast.makeText(this@SignInActivity, getString(R.string.facebookError), Toast.LENGTH_SHORT).show()
                     }
                 })
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == rcSignIn) {
@@ -130,7 +124,7 @@ class SignInActivity : AppCompatActivity(),SignInView, View.OnClickListener {
     override fun onSignInFailed(errorMsg: Int) {
         Toast.makeText(this, getString(errorMsg), Toast.LENGTH_SHORT).show()
     }
-    override fun onSignInFailedWithExeption(e: Exception) {
+    override fun onSignInFailedWithException(e: Exception) {
         Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
 
     }

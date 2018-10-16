@@ -12,20 +12,10 @@ import java.util.*
  * Created by rawan on 11/10/18.
  */
 class TodayModel(private val fbAuth: FirebaseAuth,private val database: JFTDatabase){
-    val id =database.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
-//    private fun userId():Int{
-//        var id = 0
-//        AsyncTaskJFT(inBackground = {
-//            return@AsyncTaskJFT database.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!)
-//        },onSuccess = {
-//            id=it
-//        }).execute()
-//        return id
-//    }
     fun requestUserNutritionInformation():NutritionInfo{
-            return database.upDao().selectSummationOfNutInfo(id, DateWithoutTime.todayDateWithoutTime(Date()))
+            return database.upDao().selectSummationOfNutInfo(database.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!), DateWithoutTime.todayDateWithoutTime(Date()))
     }
     fun requestUserProductsList():List<BrandNameAndCounter>{
-        return database.upDao().selectProductsOfCurrentUSer(id, DateWithoutTime.todayDateWithoutTime(Date()))
+        return database.upDao().selectProductsOfCurrentUSer(database.userDao().selectUserWithEmail(fbAuth.currentUser?.email!!), DateWithoutTime.todayDateWithoutTime(Date()))
     }
 }

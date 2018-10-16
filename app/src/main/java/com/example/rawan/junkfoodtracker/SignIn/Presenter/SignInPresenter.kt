@@ -11,6 +11,4 @@ interface SignInPresenter {
     fun fireBaseSignInAccount(email:String, password:String)
     fun handleFacebookSignInResults(token: AccessToken)
     fun handleGoogleSignInResults(completedTask: Task<GoogleSignInAccount>)
-
-
 }

@@ -17,7 +17,8 @@ class ProductInfoResponseModel{
             override fun onResponse(call: Call<Response>?, response: retrofit2.Response<Response>?) {
                 if (!response?.body()?.status.equals("product found")) {
                     onFail(response?.body()?.status!!)
-                } else {
+                }
+                else {
                     val brandName = response?.body()?.product?.brandsTags?.get(0)!!
                     val energy = response.body()?.product?.nutriments?.energy!!.toLong()
                     val saturatedFat = response.body()?.product?.nutriments?.saturatedFat!!.toLong()

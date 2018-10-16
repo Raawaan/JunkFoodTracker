@@ -48,8 +48,8 @@ class CalenderFragment : Fragment(),CalenderView {
         val myDate = Date(System.currentTimeMillis() - 1000 * 60 * 60 * 24)
         val yesterday= DateWithoutTime.todayDateWithoutTime(myDate)
         val dateFormat = SimpleDateFormat("dd/M/yyyy", Locale.ENGLISH)
-        calProductListTitle.text=getString(R.string.productTitle) +dateFormat.format(yesterday)
-        calTotalNutiTitle.text=getString(R.string.nutTitle) + dateFormat.format(yesterday)
+        calProductListTitle.text=getString(R.string.productTitle,dateFormat.format(yesterday))
+        calTotalNutiTitle.text=getString(R.string.nutTitle,dateFormat.format(yesterday))
         calendarView.date = yesterday
 
         calenderPresenter.requestCurrentUserNutritionInfo(yesterday)
@@ -64,8 +64,9 @@ class CalenderFragment : Fragment(),CalenderView {
         handleBottomSheetBehavior()
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             month.plus(1)
-            calProductListTitle.text = getString(R.string.productTitle) + dayOfMonth + "/" + month.plus(1) + "/" + year
-            calTotalNutiTitle.text = getString(R.string.nutTitle) + dayOfMonth + "/" + month.plus(1) + "/" + year
+            calProductListTitle.text = getString(R.string.productTitle, getString(R.string.date_format,dayOfMonth.toString(),month.plus(1).toString()
+                    ,year.toString()))
+            calTotalNutiTitle.text = getString(R.string.nutTitle,getString(R.string.date_format,dayOfMonth.toString(),month.plus(1).toString(),year.toString() ))
 
             calender.set(year, month, dayOfMonth)
             val selectedDateWithoutTime= DateWithoutTime.todayDateWithoutTime(calender.time)
@@ -81,7 +82,8 @@ class CalenderFragment : Fragment(),CalenderView {
         val day = calender.get(Calendar.DAY_OF_MONTH)
         fromBtn.setOnClickListener {
              fromPicker= DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { _, mYear, mMonth, mDayOfMonth ->
-                tvFrom.text = " " + mDayOfMonth + "/" + mMonth.plus(1) + "/" + mYear
+                tvFrom.text = getString(R.string.date_format,mDayOfMonth.toString(),mMonth.toString()
+                        ,mYear.toString())
                 calender.set(Calendar.YEAR, mYear)
                 calender.set(Calendar.MONTH, mMonth)
                 calender.set(Calendar.DAY_OF_MONTH, mDayOfMonth)
@@ -93,7 +95,8 @@ class CalenderFragment : Fragment(),CalenderView {
         }
         toBtn.setOnClickListener {
                 toPicker = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { _, mYear, mMonth, mDayOfMonth ->
-                tvTo.text = " " + mDayOfMonth + "/" + mMonth.plus(1) + "/" + mYear
+                tvTo.text = getString(R.string.date_format,mDayOfMonth.toString(),mMonth.toString()
+                        ,mYear.toString())
                 calender.set(Calendar.YEAR, mYear)
                 calender.set(Calendar.MONTH, mMonth)
                 calender.set(Calendar.DAY_OF_MONTH, mDayOfMonth)
@@ -143,10 +146,10 @@ class CalenderFragment : Fragment(),CalenderView {
         toPicker.datePicker.minDate=minDate
     }
     override fun acceptNutritionInfo(nutrition: NutritionInfo) {
-        calFragTvEnergy.text = getString(R.string.energy) + nutrition.energy.toString() + getString(R.string.energy_unit)
-        calFragTvSaturatedFat.text = getString(R.string.saturated_fat) + nutrition.saturatedFat.toString() + getString(R.string.unit)
-        calFragTvSugars.text = getString(R.string.sugars) + nutrition.sugars.toString() + getString(R.string.unit)
-        calFragTvCarbohydrates.text = getString(R.string.carbohydrates) + nutrition.carbohydrates.toString() + getString(R.string.unit)
+        calFragTvEnergy.text = getString(R.string.energy,nutrition.energy.toString() ,getString(R.string.energy_unit))
+        calFragTvSaturatedFat.text = getString(R.string.saturated_fat,nutrition.saturatedFat.toString(),getString(R.string.unit))
+        calFragTvSugars.text = getString(R.string.sugars,nutrition.sugars.toString(),getString(R.string.unit) )
+        calFragTvCarbohydrates.text = getString(R.string.carbohydrates,nutrition.carbohydrates.toString(),getString(R.string.unit) )
     }
     override fun acceptUsersProductList(productList: List<BrandNameAndCounter>) {
         listProducts =productList
@@ -156,9 +159,9 @@ class CalenderFragment : Fragment(),CalenderView {
     }
     override fun acceptNutInfoOfSelectedPeriod(nutrition: NutritionInfo) {
         nutInfoRange.visibility = View.VISIBLE
-        sheetFragTvEnergy.text = getString(R.string.energy) + nutrition.energy.toString() + getString(R.string.energy_unit)
-        sheetFragTvSaturatedFat.text = getString(R.string.saturated_fat) + nutrition.saturatedFat.toString() + getString(R.string.unit)
-        sheetFragTvSugars.text = getString(R.string.sugars) + nutrition.sugars.toString() + getString(R.string.unit)
-        sheetFragTvCarbohydrates.text = getString(R.string.carbohydrates) + nutrition.carbohydrates.toString() + getString(R.string.unit)
+        sheetFragTvEnergy.text = getString(R.string.energy,nutrition.energy.toString(), getString(R.string.energy_unit))
+        sheetFragTvSaturatedFat.text = getString(R.string.saturated_fat,nutrition.saturatedFat.toString(),getString(R.string.unit))
+        sheetFragTvSugars.text = getString(R.string.sugars,nutrition.sugars.toString(),getString(R.string.unit) )
+        sheetFragTvCarbohydrates.text = getString(R.string.carbohydrates,nutrition.carbohydrates.toString(),getString(R.string.unit))
     }
 }

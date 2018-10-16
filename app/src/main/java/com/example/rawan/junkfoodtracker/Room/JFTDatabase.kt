@@ -27,7 +27,7 @@ import android.content.Context
                 INSTANCE = Room
                         .databaseBuilder(context.applicationContext,
                                 JFTDatabase::class.java, DATABASE_NAME)
-                        .fallbackToDestructiveMigration().allowMainThreadQueries()
+                        .fallbackToDestructiveMigration()
                         .build()
             }
             return INSTANCE!!
