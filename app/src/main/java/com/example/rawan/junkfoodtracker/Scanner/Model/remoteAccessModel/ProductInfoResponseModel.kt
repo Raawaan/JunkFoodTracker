@@ -17,7 +17,6 @@ class ProductInfoResponseModel{
             override fun onResponse(call: Call<Response>?, response: retrofit2.Response<Response>?) {
                 if (!response?.body()?.status.equals("product found")) {
                     onFail(response?.body()?.status!!)
-//                    Toast.makeText(this@ScannerActivity, "${response?.body()?.status}", Toast.LENGTH_SHORT).show()
                 } else {
                     val brandName = response?.body()?.product?.brandsTags?.get(0)!!
                     val energy = response.body()?.product?.nutriments?.energy!!.toLong()
@@ -30,7 +29,6 @@ class ProductInfoResponseModel{
             }
             override fun onFailure(call: Call<Response>?, t: Throwable?) {
                 onFail(t.toString())
-//                Toast.makeText(this@ScannerActivity, "$t", Toast.LENGTH_SHORT).show()
             }
         })
     }

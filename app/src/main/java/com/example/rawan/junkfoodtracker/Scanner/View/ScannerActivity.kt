@@ -19,9 +19,10 @@ import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import android.Manifest
 import android.app.DatePickerDialog
+import com.example.rawan.junkfoodtracker.InternetConnection
 import com.example.rawan.junkfoodtracker.R
 import com.example.rawan.junkfoodtracker.Room.*
-import com.example.rawan.junkfoodtracker.Scanner.Model.localAccessModel.localScannerModel
+import com.example.rawan.junkfoodtracker.Scanner.Model.localAccessModel.LocalScannerModel
 import com.example.rawan.junkfoodtracker.Scanner.Model.remoteAccessModel.ProductInfoResponseModel
 import com.example.rawan.junkfoodtracker.Scanner.Presenter.ScannerPresenter
 import com.example.rawan.junkfoodtracker.Scanner.Presenter.ScannerPresenterImp
@@ -32,10 +33,6 @@ import java.text.SimpleDateFormat
  * Created by rawan on 10/09/1b.
  */
 class ScannerActivity : AppCompatActivity(), ScannerView {
-
-
-
-    val api = API.create()
     private val fbAuth = FirebaseAuth.getInstance()
     var counterPM = 1
     private val calender = Calendar.getInstance()
@@ -58,7 +55,7 @@ class ScannerActivity : AppCompatActivity(), ScannerView {
         setSupportActionBar(Scannertoolbar)
         Stetho.initializeWithDefaults(this)
         supportActionBar?.title = getString(R.string.scanner_activity_name)
-        scannerPresenter = ScannerPresenterImp(localScannerModel(com.example.rawan.junkfoodtracker.Room.JFTDatabase.getInstance(this)),
+        scannerPresenter = ScannerPresenterImp(LocalScannerModel(com.example.rawan.junkfoodtracker.Room.JFTDatabase.getInstance(this)),
                 ProductInfoResponseModel(),this)
         choose_img.setOnClickListener { setupPermissions() }
         val year = calender.get(Calendar.YEAR)
@@ -101,7 +98,10 @@ class ScannerActivity : AppCompatActivity(), ScannerView {
     private fun barcodeDetection(photo: Bitmap) {
         iv_barcode.background = null
         iv_barcode.setImageBitmap(photo)
-        scannerPresenter.detectBarcode(photo)
+       if (InternetConnection.isOnline(this@ScannerActivity))
+            scannerPresenter.detectBarcode(photo)
+       else
+           Toast.makeText(this@ScannerActivity, getString(R.string.connection), Toast.LENGTH_SHORT).show()
     }
     override fun updateViewResponse(productEntity: ProductEntity) {
         updateViews(productEntity.brandName, productEntity.energy,
@@ -146,12 +146,10 @@ class ScannerActivity : AppCompatActivity(), ScannerView {
     override fun onSuccess(msg: String) {
         Toast.makeText(this,msg,Toast.LENGTH_LONG).show()
     }
-    override fun onException(msg: String) {
-        Toast.makeText(this,msg,Toast.LENGTH_LONG).show()
+    override fun onFailed(msg: String) {
+        Toast.makeText(this, msg,Toast.LENGTH_LONG).show()
     }
-    override fun onFailed(errorMsg: Int) {
-        Toast.makeText(this, errorMsg,Toast.LENGTH_LONG).show()
-    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {

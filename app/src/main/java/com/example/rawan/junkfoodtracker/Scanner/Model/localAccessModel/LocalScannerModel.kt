@@ -9,7 +9,7 @@ import retrofit2.Callback
 /**
  * Created by rawan on 10/10/18.
  */
-class localScannerModel(private val database: JFTDatabase){
+class LocalScannerModel(private val database: JFTDatabase){
     fun sameUserWithBarcodeAndDate(userId:Int, barcode:Long,selectedDate:Long):Int{
       return  database.upDao().sameUserSameProduct(userId,
               barcode,selectedDate)

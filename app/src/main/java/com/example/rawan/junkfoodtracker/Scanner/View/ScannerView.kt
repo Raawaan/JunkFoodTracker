@@ -8,8 +8,7 @@ import com.example.rawan.junkfoodtracker.Room.ProductEntity
  * Created by rawan on 10/10/18.
  */
 interface ScannerView {
-    fun onFailed(@StringRes errorMsg:Int)
+    fun onFailed(msg:String)
     fun onSuccess( msg:String)
-    fun onException( msg:String)
     fun updateViewResponse(productEntity: ProductEntity)
 }
