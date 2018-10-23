@@ -98,10 +98,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
             signUpPresenter.handleGoogleSignUpResults(task)
         } else
             mCallbackManager?.onActivityResult(requestCode, resultCode, data)
-    }
+    }//todo be handled
     private fun facebookHandler() {
         mCallbackManager = CallbackManager.Factory.create()
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(getString(R.string.pp), getString(R.string.email)))
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"))
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(loginResult: LoginResult) {

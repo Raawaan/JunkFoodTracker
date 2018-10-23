@@ -8,4 +8,5 @@ import com.example.rawan.junkfoodtracker.Room.JFTDatabase
 interface TodayPresenter {
     fun requestCurrentUserNutritionInfo()
     fun requestCurrentUserProductsList()
+    fun onDetach()
 }

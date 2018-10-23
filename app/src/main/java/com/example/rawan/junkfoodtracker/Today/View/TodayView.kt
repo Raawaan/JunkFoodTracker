@@ -10,4 +10,5 @@ import com.example.rawan.junkfoodtracker.Room.NutritionInfo
 interface TodayView{
     fun acceptNutritionInfo(nutrition: NutritionInfo)
     fun acceptUsersProductList(productList:List<BrandNameAndCounter>)
+    fun exception(e:Throwable)
 }

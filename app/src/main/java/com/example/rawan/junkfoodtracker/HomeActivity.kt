@@ -101,7 +101,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        when (view!!.id) {
+        when (view?.id) {
             R.id.actionBarScanner -> {
                 val i = Intent(this@HomeActivity, ScannerActivity::class.java)
                 startActivity(i)

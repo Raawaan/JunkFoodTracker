@@ -7,6 +7,7 @@ import com.example.rawan.junkfoodtracker.Room.NutritionInfo
  * Created by rawan on 11/10/18.
  */
 interface CalenderView {
+    fun exception(e:Throwable)
     fun acceptMinDate(minDate:Long)
     fun acceptNutInfoOfSelectedPeriod(nutrition: NutritionInfo)
     fun acceptMinDateFromPicker(minDate:Long)

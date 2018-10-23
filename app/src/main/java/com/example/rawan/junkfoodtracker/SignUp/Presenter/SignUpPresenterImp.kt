@@ -14,7 +14,6 @@ import java.util.regex.Pattern
  */
 class SignUpPresenterImp(private val fireBaseSignUpModel: FireBaseSignUpModel, private val googleSignUpModel: GoogleSignUpModel,
                          private val facebookSignUpModel: FacebookSignUpModel, private val signUpView: SignUpView) : SignUpPresenter {
-
     override fun handleFacebookSignUpResults(token: AccessToken) {
         facebookSignUpModel.signUpWithFacebook(token, onSuccess = {
             signUpView.onSignUpSuccess()

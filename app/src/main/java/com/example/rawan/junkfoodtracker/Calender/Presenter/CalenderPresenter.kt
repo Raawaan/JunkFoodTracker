@@ -4,6 +4,7 @@ package com.example.rawan.junkfoodtracker.Calender.Presenter
  * Created by rawan on 11/10/18.
  */
 interface CalenderPresenter{
+    fun onDetach()
     fun selectMinDate()
     fun selectMinDateFromPicker()
     fun selectMinDateToPicker()

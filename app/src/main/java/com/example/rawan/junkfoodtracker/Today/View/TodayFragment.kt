@@ -2,15 +2,14 @@ package com.example.rawan.junkfoodtracker.Today.View
 
 import android.graphics.Color
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.rawan.junkfoodtracker.ProductAdapter
 import com.example.rawan.junkfoodtracker.R
 import com.example.rawan.junkfoodtracker.Room.BrandNameAndCounter
-import com.example.rawan.junkfoodtracker.Room.DateWithoutTime
 import com.example.rawan.junkfoodtracker.Room.JFTDatabase
 import com.example.rawan.junkfoodtracker.Room.NutritionInfo
 import com.example.rawan.junkfoodtracker.SharedPreferenceHelper
@@ -19,7 +18,6 @@ import com.example.rawan.junkfoodtracker.Today.Presenter.TodayPresenter
 import com.example.rawan.junkfoodtracker.Today.Presenter.TodayPresenterImp
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.today_fragment.*
-import java.util.*
 
 /**
  * Created by rawan on 09/09/18.
@@ -62,6 +60,13 @@ class TodayFragment : android.support.v4.app.Fragment(),TodayView {
         fragTvCarbohydrates.text=getString(R.string.carbohydrates,carbohydrates.toString(),getString(R.string.unit))
         if (carbohydrates > SharedPreferenceHelper.getValuesSharedPref(activity!!.applicationContext).getString(getString(R.string.carbohydrates_key),getString(R.string.carbohydrates_default)).toInt())
             fragTvCarbohydrates.setTextColor(Color.parseColor(getString(R.string.red)))
+    }
+    override fun onDetach() {
+        todayPresenter.onDetach()
+        super.onDetach()
+    }
+    override fun exception(e: Throwable) {
+        Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show()
     }
 }
 //        val shredPref=PreferenceManager.getDefaultSharedPreferences(activity)
