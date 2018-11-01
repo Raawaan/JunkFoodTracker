@@ -27,6 +27,7 @@
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
+          <option name="classpath" value="$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/eab9691bc4213b05a89547f6f5c9902f/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/preference-v7-27.1.1.aar/6537bb05078c31e15064a4e1d87af339/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/d29857bccf6ff339bdf146362e2f6370/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-android-sdk-4.38.0.aar/d7e4bb7bc9fdbf70f7ab94e5de1ffac7/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-login-4.38.0.aar/642ad8ebca31bc489aa24d367bd611cd/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/tutorial-view-v1.0.6.aar/9f8333072a491f7aaf3f0b345323a1a5/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-share-4.38.0.aar/18e00fa50c7a04bcd8f01ed01571f8ec/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-common-4.38.0.aar/054f88c16b2692f77e46bba9f4490bec/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/777f563e498b0b0231e55b22022c84bb/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/cb58c6289d11a1e5fe76a6f78652855d/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.1.aar/0d36fb7cee6725434edd42081f630336/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.1.aar/ed4babfe3da215215df7e76e80b07f42/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.3.aar/9f96cc468e331ff62d9cd3b604aca9f2/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-ml-vision-16.0.0.aar/23516b205c28e6d2b32bfb09ddec40ae/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-auth-16.0.3.aar/caf86ae1fab8152072d2a9b1a1907ff1/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-auth-16.0.0.aar/30d99618cd203aef381c2c9b4d63ae18/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/rxandroid-2.0.1.aar/b7ac2f99d3722240ef75504cdc36d3e4/jars/classes.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxkotlin/2.1.0/a689f6ecddec6164a5975fe26ddfded1eab945e9/rxkotlin-2.1.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.2.71/4ce93f539e2133f172f1167291a911f83400a5d0/kotlin-stdlib-jdk7-1.2.71.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/rxjava2-1.1.1.aar/dc81bfea503010523182c2e45bdfe0be/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/107ea6532fe7014a817922cc6d633e3d/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/stetho-1.5.0.aar/df15d655f068628b877dae2927f34d17/jars/classes.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava2/2.3.0/f436637f9500ab5b8bc32afe556373180894b4a5/adapter-rxjava2-2.3.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.3.0/9e09011e9767bb76b5e27c9b8223476b93b14631/converter-gson-2.3.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.3.0/bcacde6a8ccedcc56c127403d26b76072fe6214d/retrofit-2.3.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.3/bde0667d7414c16ed62d3cfe993cff7f9d732373/constraint-layout-solver-1.1.3.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/transition-27.1.1.aar/314cd64d370059a86c0b6a4b1f7b98fb/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-places-4.38.0.aar/70277ac36e85c7e10b1afa4db28ab1cd/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-applinks-4.38.0.aar/20000611cd162664cffbc68df6e2d0a1/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.38.0.aar/d321ab00d2e3eb6e157ba45217fa533f/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-marketing-4.38.0.aar/9c5dd5ab90981a8fadb0435e40d70d40/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/facebook-core-4.38.0.aar/28d3460f0cfa6f789231e2179ae92117/jars/classes.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/android.arch.persistence.room/common/1.1.1/8094cc50760b9ac665a8ea76b51888f70042e2b5/common-1.1.1.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/db-framework-1.1.1.aar/81dc1768be6bd7c5e83fe549b16a2a36/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/db-1.1.1.aar/03560723a27697a641f6dfc44243529f/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/customtabs-27.0.2.aar/335b1798a0672561f0d302e6d1a565f3/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.1.aar/ded838e094c2b947d46065d655e646c4/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.3.aar/d2e27772964342485aeb82a7223b17ac/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-vision-15.0.2.aar/e3edcfc3293b00f6c3b1af09e4c33d79/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-vision-image-label-15.0.0.aar/3e82d036e2f97657234c40c1472479bd/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-vision-common-15.0.2.aar/57fcdeadca45fd726e972da8d1fe1c16/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-ml-common-16.0.0.aar/65577e74c71839009fd47f0802852f32/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-flags-15.0.1.aar/408ff1e4c314525a8daa453678e95cc8/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-auth-interop-16.0.0.aar/a78a898db21b9e70fca45d840b249841/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-auth-api-phone-15.0.1.aar/d5f9b0bfb52a5e3f59573717c65a1706/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-auth-base-15.1.0.aar/4d0351c7fa8e0e606f31230ce2030de4/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-clearcut-15.0.1.aar/6777b07d9d6c3ec3fd51510c5490100f/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-phenotype-15.0.1.aar/2dd57ec5a4513458dc2787b6c9671457/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-measurement-api-16.0.1.aar/36bc2cdea7bcd28e38e5c289ebe8347e/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.1.aar/5150eefc9a19c7166d8dbdc1c12bac6d/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-iid-16.0.0.aar/f1eb33d6297d891e58cc660430594a68/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-iid-interop-16.0.0.aar/93bce464fc19ead64b16ab1bf1f8bfdd/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f93f2bf1d7ce7a93ac414c3908d21c2f/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.1.aar/47f5bb8482faf277c8d6c18c67783361/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/4c2d51206b4675058d553e784ee759b0/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-stats-15.0.1.aar/a0cef4f0c98963e3bac8427ea2c62f70/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-17.0.0.aar/3734a8b4c3381edfe01c91c1e9f37cb2/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-15.0.1.aar/ddef902bc707ac2bd96089c16aa3b4ed/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/82872707d7775bf90ef1736047022a90/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/c9d7de92a1bd3c7afbf5fd244182b755/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/1ca6f85733c46378ebe40b226f328a5b/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/661c8f9bf2dbdc4f1b2e3a7cf2d531e8/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/bda98a878be9fcd2820dc1eab56c1f20/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/bd2070befab2c5d95a01ed2b089beb32/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/f9b5614e9ade855f5f93056fdc6e9caf/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/1a200288db1ce65f4fad1b32f1dee43c/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/9ca45e3c7b3c5e69e2fa7ae8c91361ac/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/a93cc1b77d6738447725d913d1b3e9e3/jars/classes.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/60d330720dc82bf94a56c02e8233fa27/jars/classes.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.1/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.1.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.2.71/d9717625bb3c731561251f8dd2c67a1011d6764c/kotlin-stdlib-1.2.71.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.0/5a11f020cce2d11eb71ba916700600e18c4547e7/okhttp-3.8.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.2.aar/f30e505f66b9510c581b5045f0de8aad/jars/classes.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.4.0/cc174c559b5177982887bf6e1b76003aebad9516/bolts-android-1.4.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.0/73c49077166faa4c3c0059c5f583d1d7bd1475fe/core-3.3.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.2.71/ba18ca1aa0e40eb6f1865b324af2f4cbb691c1ec/kotlin-stdlib-common-1.2.71.jar:/home/rawan/IDEs/android-studio/gradle/m2repository/org/jetbrains/annotations/13.0/annotations-13.0.jar:/home/rawan/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/d299d63db708d12a538106d23b411aad/jars/classes.jar:/home/rawan/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.0/edf3f7bfb84a7521d0599efa3b0113a0ee90f85/common-1.1.0.jar:/home/rawan/Android/Sdk/platforms/android-27/android.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="app_debug" />
@@ -43,8 +44,8 @@
           </option>
           <option name="pluginClasspaths">
             <array>
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions/1.2.61/564710f8171991001cba1c828c3331d833d9d28b/kotlin-android-extensions-1.2.61.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-annotation-processing-gradle/1.2.61/57f9bb657e120efe72b86b58781636770606019a/kotlin-annotation-processing-gradle-1.2.61.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions/1.2.71/bda3ee49317ef7a1e8058de61f91abe94c015538/kotlin-android-extensions-1.2.71.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-annotation-processing-gradle/1.2.71/9786b76a77080e76ced78e7c9165076b5eaa3467/kotlin-annotation-processing-gradle-1.2.71.jar" />
             </array>
           </option>
           <option name="coroutinesState" value="enable" />
@@ -104,13 +105,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
@@ -118,6 +112,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/build-info" />
@@ -128,16 +129,14 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-verifier" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-apk" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-main-apk-res" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-resources" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-support" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/split-apk" />
@@ -149,43 +148,40 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 27 Platform (1)" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="com.facebook.android:facebook-android-sdk-4.38.0" level="project" />
     <orderEntry type="library" name="io.reactivex.rxjava2:rxkotlin:2.1.0@jar" level="project" />
     <orderEntry type="library" name="io.reactivex.rxjava2:rxjava:2.1.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:transition-27.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="com.squareup:javawriter:2.1.1@jar" level="project" />
     <orderEntry type="library" name="android.arch.persistence.room:runtime-1.1.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-auth-api-phone-15.0.1" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-core-4.37.0" level="project" />
     <orderEntry type="library" name="com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-applinks-4.38.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-ml-vision-16.0.0" level="project" />
     <orderEntry type="library" name="com.squareup.okhttp3:okhttp:3.8.0@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-flags-15.0.1" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:viewmodel-1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-integration:1.3@jar" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-common-4.37.0" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-share-4.37.0" level="project" />
     <orderEntry type="library" scope="TEST" name="net.sf.kxml:kxml2:2.3.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-utils-27.1.1" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:27.1.1@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-base-15.0.1" level="project" />
-    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib-common:1.2.61@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-core-3.0.2" level="project" />
+    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib-common:1.2.71@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-iid-16.0.0" level="project" />
     <orderEntry type="library" name="com.parse.bolts:bolts-applinks:1.4.0@jar" level="project" />
     <orderEntry type="library" name="android.arch.core:common:1.1.1@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-auth-interop-16.0.0" level="project" />
     <orderEntry type="library" name="com.squareup.retrofit2:retrofit:2.3.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-vector-drawable-27.1.1" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-applinks-4.37.0" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:runtime-1.1.0" level="project" />
     <orderEntry type="library" name="com.facebook.stetho:stetho-1.5.0" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.1.3" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:common:1.1.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:cardview-v7-27.1.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-tasks-15.0.1" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-places-4.37.0" level="project" />
     <orderEntry type="library" name="io.reactivex.rxjava2:rxandroid-2.0.1" level="project" />
     <orderEntry type="library" name="commons-cli:commons-cli:1.2@jar" level="project" />
     <orderEntry type="library" name="com.parse.bolts:bolts-android:1.4.0@jar" level="project" />
@@ -200,33 +196,30 @@
     <orderEntry type="library" name="android.arch.core:runtime-1.1.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-clearcut-15.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:appcompat-v7-27.1.1" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-marketing-4.38.0" level="project" />
     <orderEntry type="library" name="com.android.support:design-27.1.1" level="project" />
-    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.61@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-ml-common-16.0.0" level="project" />
     <orderEntry type="library" name="com.parse.bolts:bolts-tasks:1.4.0@jar" level="project" />
     <orderEntry type="library" name="android.arch.persistence:db-1.1.1" level="project" />
     <orderEntry type="library" name="com.android.support:recyclerview-v7-27.1.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-16.0.3" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:monitor-1.0.2" level="project" />
+    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-stats-15.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:customtabs-27.0.2" level="project" />
     <orderEntry type="library" name="com.squareup.retrofit2:adapter-rxjava2:2.3.0@jar" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-login-4.37.0" level="project" />
-    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib:1.2.61@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-basement-15.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:runner-1.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-idling-resource-3.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-core:1.3@jar" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-places-4.38.0" level="project" />
     <orderEntry type="library" name="com.google.zxing:core:3.3.0@jar" level="project" />
     <orderEntry type="library" name="org.reactivestreams:reactive-streams:1.0.0@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-measurement-connector-17.0.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-iid-interop-16.0.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-measurement-connector-impl-17.0.1" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-messenger-4.37.0" level="project" />
     <orderEntry type="library" name="android.arch.persistence.room:rxjava2-1.1.1" level="project" />
     <orderEntry type="library" name="com.android.support:animated-vector-drawable-27.1.1" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-android-sdk-4.37.0" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-marketing-4.37.0" level="project" />
     <orderEntry type="library" scope="TEST" name="junit:junit:4.12@jar" level="project" />
     <orderEntry type="library" name="android.arch.persistence.room:common:1.1.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="javax.inject:javax.inject:1@jar" level="project" />
@@ -234,19 +227,25 @@
     <orderEntry type="library" name="com.google.android.gms:play-services-auth-base-15.1.0" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-measurement-api-16.0.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-vision-common-15.0.2" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-login-4.38.0" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.7@jar" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-core-4.38.0" level="project" />
     <orderEntry type="library" name="com.squareup.okio:okio:1.13.0@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-auth-16.0.3" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-core-16.0.3" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-vision-image-label-15.0.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-compat-27.1.1" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-common-4.38.0" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-share-4.38.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-common-16.0.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-vision-15.0.2" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:livedata-core-1.1.0" level="project" />
+    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib:1.2.71@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-phenotype-15.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:preference-v7-27.1.1" level="project" />
     <orderEntry type="library" name="org.jetbrains:annotations:13.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-fragment-27.1.1" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-messenger-4.38.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-media-compat-27.1.1" level="project" />
     <orderEntry type="library" name="com.github.msayan:tutorial-view-v1.0.6" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-27.1.1" level="project" />
