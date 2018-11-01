@@ -54,4 +54,6 @@
     <string name="scanner_activity_name">Scanner</string>
     <string name="warning_msg">Invalid Period</string>
     <string name="thank_you">Thank You</string>
+    <string name="warning_minus">Can\'t be minimized</string>
+    <string name="warning_plus">10 is the max</string>
 </resources>

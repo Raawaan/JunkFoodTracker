@@ -11,9 +11,12 @@ import com.example.rawan.junkfoodtracker.Scanner.View.ScannerView
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxkotlin.zipWith
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
@@ -23,10 +26,11 @@ import java.util.*
 class ScannerPresenterImp(private val localScannerModel: LocalScannerModel,
                           private val productInfoResponseModel: ProductInfoResponseModel,
                           private val scannerView: ScannerView) : ScannerPresenter {
-    val compositeDisposable=CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
     override fun onDetach() {
         compositeDisposable.clear()
     }
+
     override fun detectBarcode(photo: Bitmap) {
         val detector = FirebaseVision.getInstance().visionBarcodeDetector
         detector.detectInImage(FirebaseVisionImage.fromBitmap(photo))
@@ -64,21 +68,86 @@ class ScannerPresenterImp(private val localScannerModel: LocalScannerModel,
                             saturatedFat: Long, sugars: Long,
                             carbohydrates: Long, date: Date, mail: String, userName: String,
                             counter: Int) {
-        AsyncTaskJFT(inBackground = {
-            val product = ProductEntity(productBarcode, name, energy, saturatedFat, sugars, carbohydrates)
-            if (localScannerModel.selectProductBarcodeIfExisted(productBarcode) == 0.toLong()) {
-                localScannerModel.addProduct(product)
-            }
-            val userEntity = UserEntity(localScannerModel.selectUserWithEmail(mail), userName, mail)
-            if (localScannerModel.selectUserWithEmail(mail) == 0) {
-                userEntity.id = localScannerModel.createUser(userEntity).toInt()
-            }
-            val sameUserProduct = localScannerModel.sameUserWithBarcodeAndDate(userEntity.id, product.barcode, DateWithoutTime.todayDateWithoutTime(date))
-            if (sameUserProduct != 0) {
-                localScannerModel.updateCounter(userEntity.id, product.barcode, counter)
-            } else {
-                localScannerModel.createNewUserProduct(userEntity.id, product.barcode, counter, DateWithoutTime.todayDateWithoutTime(date))
-            }
-        }, onSuccess = {}).execute()
+        val product = ProductEntity(productBarcode, name, energy, saturatedFat,
+                sugars, carbohydrates)
+        var userEntity = UserEntity(0, userName, mail)
+
+        localScannerModel.selectProductBarcodeIfExisted(productBarcode)
+                .zipWith(localScannerModel.selectUserWithEmail(mail))
+                .flatMap {
+                    if (it.first == (0).toLong()) {
+                        localScannerModel.addProduct(product)
+                    }
+                    userEntity = UserEntity(it.second, userName, mail)
+                    if (it.second == 0) {
+                        userEntity.id = localScannerModel.createUser(userEntity).toInt()
+                    }
+
+                    return@flatMap localScannerModel.sameUserWithBarcodeAndDate(userEntity.id,
+                            product.barcode, DateWithoutTime.todayDateWithoutTime(date))
+                }.map {
+                    if (it != 0) {
+                        localScannerModel.updateCounter(userEntity.id, product.barcode, counter)
+                    } else {
+                        localScannerModel.createNewUserProduct(userEntity.id, product.barcode, counter,
+                                DateWithoutTime.todayDateWithoutTime(date))
+                    }
+                }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onError = {
+                            scannerView.onFailed(it.toString())
+                        }, onNext = {
+                    scannerView.onSuccess("3ASH")
+                })
     }
 }
+//        localScannerModel.selectProductBarcodeIfExisted(productBarcode).flatMap {
+//            val product = ProductEntity(productBarcode, name, energy, saturatedFat,
+//                    sugars, carbohydrates)
+//            if (it  == 0.toLong()) {
+//                localScannerModel.addProduct(product)
+//            }
+//            return@flatMap localScannerModel.selectUserWithEmail(mail).flatMap {
+//                val userEntity = UserEntity(it, userName, mail)
+//                if (it  == 0) {
+//                    userEntity.id = localScannerModel.createUser(userEntity).toInt()
+//                }
+//                return@flatMap localScannerModel.sameUserWithBarcodeAndDate(userEntity.id,
+//                        product.barcode, DateWithoutTime.todayDateWithoutTime(date)).map {
+//                    if (it != 0) {
+//                        localScannerModel.updateCounter(userEntity.id, product.barcode, counter)
+//                    } else {
+//                        localScannerModel.createNewUserProduct(userEntity.id, product.barcode, counter,
+//                                DateWithoutTime.todayDateWithoutTime(date))
+//                    }
+//                }
+//            }
+//        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onError = {
+//            scannerView.onFailed("L2AAAAAAAA")
+//        },onNext = {
+//            scannerView.onSuccess("3ASH")
+//        })
+
+//
+//    val product = ProductEntity(productBarcode, name, energy, saturatedFat,
+//            sugars, carbohydrates)
+//    if (localScannerModel.selectProductBarcodeIfExisted(productBarcode) == 0.toLong()) {
+//        localScannerModel.addProduct(product)
+//    }
+//
+//
+//    val userEntity = UserEntity(localScannerModel.selectUserWithEmail(mail), userName, mail)
+//    if (localScannerModel.selectUserWithEmail(mail) == 0) {
+//        userEntity.id = localScannerModel.createUser(userEntity).toInt()
+//    }
+//
+//
+//    val sameUserProduct = localScannerModel.sameUserWithBarcodeAndDate(userEntity.id,
+//            product.barcode, DateWithoutTime.todayDateWithoutTime(date))
+//    if (sameUserProduct != 0) {
+//        localScannerModel.updateCounter(userEntity.id, product.barcode, counter)
+//    } else {
+//        localScannerModel.createNewUserProduct(userEntity.id, product.barcode, counter,
+//                DateWithoutTime.todayDateWithoutTime(date))
+//    }

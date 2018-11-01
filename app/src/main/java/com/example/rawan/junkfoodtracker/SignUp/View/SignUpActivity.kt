@@ -74,7 +74,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
         })
-        setPassword.setOnEditorActionListener { _, actionId, _ ->
+        setPassword.setOnEditorActionListener {_, actionId, _ ->
             if (InternetConnection.isOnline(this) && actionId == EditorInfo.IME_ACTION_DONE)
                 signUpPresenter.createFireBaseAccount(setEmail.text.toString(), setPassword.text.toString())
             else
@@ -98,13 +98,13 @@ class SignUpActivity : AppCompatActivity(), SignUpView, View.OnClickListener {
             signUpPresenter.handleGoogleSignUpResults(task)
         } else
             mCallbackManager?.onActivityResult(requestCode, resultCode, data)
-    }//todo be handled
+    }
     private fun facebookHandler() {
         mCallbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"))
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 object : FacebookCallback<LoginResult> {
-                    override fun onSuccess(loginResult: LoginResult) {
+                     override fun onSuccess(loginResult: LoginResult) {
                         handleFacebookAccessToken(loginResult.accessToken)
                     }
                     override fun onCancel() {

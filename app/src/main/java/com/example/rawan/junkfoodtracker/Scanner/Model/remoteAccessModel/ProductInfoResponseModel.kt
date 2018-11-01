@@ -13,7 +13,8 @@ import retrofit2.Callback
 class ProductInfoResponseModel {
     val api = API.create()
     fun connectToAPI(barcode: Long): Observable<ProductEntity> {
-        return api.getData(barcode).map { response ->
+        return api.getData(barcode)
+                .map { response ->
             val brandName = response.product?.brandsTags?.get(0)!!
             val energy = response.product.nutriments?.energy!!.toLong()
             val saturatedFat = response.product.nutriments.saturatedFat!!.toLong()

@@ -68,14 +68,14 @@ class ScannerActivity : AppCompatActivity(), ScannerView {
                 counterPM++
                 counterPlusMinus.text = counterPM.toString()
             } else
-                Toast.makeText(this@ScannerActivity, "10 is the max", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ScannerActivity, getString(R.string.warning_plus), Toast.LENGTH_SHORT).show()
         }
         minusFab.setOnClickListener {
             if (counterPM != 1) {
                 counterPM--
                 counterPlusMinus.text = counterPM.toString()
             } else
-                Toast.makeText(this@ScannerActivity, "Can't be minimized", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ScannerActivity, getString(R.string.warning_minus), Toast.LENGTH_SHORT).show()
         }
         confirm.setOnClickListener {
             scannerPresenter.addProduct(productEntityL.barcode, productEntityL.brandName,

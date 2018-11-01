@@ -30,6 +30,7 @@ import java.util.*
  */
 
 class CalenderFragment : Fragment(), CalenderView {
+    val firebaseAuth=FirebaseAuth.getInstance()
     private var calender: Calendar = Calendar.getInstance()
     private val date = Date()
     private lateinit var fromPicker: DatePickerDialog
@@ -37,12 +38,13 @@ class CalenderFragment : Fragment(), CalenderView {
     private lateinit var calenderPresenter: CalenderPresenter
     private lateinit var productAdapter: ProductAdapter
     private lateinit var listProducts: List<BrandNameAndCounter>
-    private lateinit var toDate: Date
-    private lateinit var fromDate: Date
+    private var toDate= Date()
+    private var fromDate= Date()
     override fun onStart() {
         super.onStart()
         //set min and max date
-        calenderPresenter = CalenderPresenterImp(CalenderModel(FirebaseAuth.getInstance(), com.example.rawan.junkfoodtracker.Room.JFTDatabase.getInstance(activity!!.applicationContext)), this)
+        calenderPresenter = CalenderPresenterImp(CalenderModel(firebaseAuth,
+                com.example.rawan.junkfoodtracker.Room.JFTDatabase.getInstance(activity!!.applicationContext)), this)
         calenderPresenter.selectMinDate()
         calendarView.maxDate = date.time
 
@@ -111,7 +113,7 @@ class CalenderFragment : Fragment(), CalenderView {
             confrimDateBtn.visibility = View.VISIBLE
         }
         confrimDateBtn.setOnClickListener {
-            toDate = DataConverter().toData(DateWithoutTime.todayDateWithoutTime(toDate))!!
+                toDate = DataConverter().toData(DateWithoutTime.todayDateWithoutTime(toDate))!!
             fromDate = DataConverter().toData(DateWithoutTime.todayDateWithoutTime(fromDate))!!
             if (fromDate.after(toDate) || toDate.after(DataConverter().toData(DateWithoutTime.todayDateWithoutTime(date)))) {
                 Toast.makeText(activity, getString(R.string.warning_msg), Toast.LENGTH_SHORT).show()

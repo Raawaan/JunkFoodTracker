@@ -12,9 +12,11 @@ import io.reactivex.schedulers.Schedulers
  */
 class CalenderPresenterImp(private val calenderModel: CalenderModel, private val calendarView: CalenderView) : CalenderPresenter {
     private val compositeDisposable=CompositeDisposable()
+
     override fun onDetach() {
         compositeDisposable.clear()
     }
+
     override fun selectNutritionInfoOfSelectedPeriod(from: Long, to: Long) {
         compositeDisposable.add(calenderModel.selectNunInfoOfSelectedPeriod(from, to).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeBy(onNext = {
@@ -25,8 +27,9 @@ class CalenderPresenterImp(private val calenderModel: CalenderModel, private val
         )
     }
     override fun selectMinDateFromPicker() {
-        compositeDisposable.add(calenderModel.getMinDate().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribeBy(onNext = {
+        compositeDisposable.add(calenderModel.getMinDate()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
                     calendarView.acceptMinDateFromPicker(it)
                 }, onError = {
                     calendarView.exception(it)
@@ -35,7 +38,7 @@ class CalenderPresenterImp(private val calenderModel: CalenderModel, private val
     }
     override fun selectMinDateToPicker() {
         compositeDisposable.add(calenderModel.getMinDate().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribeBy(onNext = {
+                .observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
                     calendarView.acceptMinDateToPicker(it)
                 }, onError = {
                     calendarView.exception(it)
@@ -44,7 +47,8 @@ class CalenderPresenterImp(private val calenderModel: CalenderModel, private val
     }
 
     override fun requestCurrentUserNutritionInfo(date: Long) {
-        compositeDisposable.add(calenderModel.requestUserNutritionInformation(date).subscribeOn(Schedulers.io())
+        compositeDisposable.add(calenderModel.requestUserNutritionInformation(date)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeBy(onNext = {
                     calendarView.acceptNutritionInfo(it)
                 }, onError = {
@@ -63,7 +67,7 @@ class CalenderPresenterImp(private val calenderModel: CalenderModel, private val
     }
     override fun selectMinDate() {
         compositeDisposable.add(calenderModel. getMinDate().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribeBy(onNext = {
+                .observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
                     calendarView.acceptMinDate(it)
                 }, onError = {
                     calendarView.exception(it)

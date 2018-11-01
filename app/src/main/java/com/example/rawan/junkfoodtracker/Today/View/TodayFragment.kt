@@ -23,13 +23,15 @@ import kotlinx.android.synthetic.main.today_fragment.*
  * Created by rawan on 09/09/18.
  */
 class TodayFragment : android.support.v4.app.Fragment(),TodayView {
-    lateinit var productAdapter: ProductAdapter
-    lateinit var listProducts: List<BrandNameAndCounter>
-    lateinit var todayPresenter:TodayPresenter
+    val firebaseAuth=FirebaseAuth.getInstance()
+    private lateinit var productAdapter: ProductAdapter
+    private lateinit var listProducts: List<BrandNameAndCounter>
+    private lateinit var todayPresenter:TodayPresenter
     override fun onResume() {
         super.onResume()
-        todayPresenter=TodayPresenterImp(TodayModel(FirebaseAuth.getInstance(),
-                JFTDatabase.getInstance(activity!!.applicationContext)),
+        todayPresenter=TodayPresenterImp(TodayModel(
+                firebaseAuth,
+                JFTDatabase.getInstance( activity!!.applicationContext)),
                 this)
         todayPresenter.requestCurrentUserNutritionInfo()
         todayPresenter.requestCurrentUserProductsList()
